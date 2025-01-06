@@ -1,8 +1,22 @@
-
+import {  UserButton, useUser } from "@clerk/clerk-react"
+import { Link } from "react-router-dom";
+import { Button } from "../components/ui/button";
+// import Button from 
 function Header() {
+  const{isSignedIn,user}=useUser();
+
   return (
-    <div>
-        <img src="/logo.svg" width={100} height={100}></img>
+    <div className="flex shadow-lg  w-[95%] h-[4rem] justify-between  border-2 mx-auto my-2 p-1">
+        <img src="/logo.svg" width={60} height={60}></img>
+        {
+          isSignedIn ? <div className="items-center flex gap-5">
+              <Link to={"/dashboard"}>
+              <Button variant="outline">Dashboard</Button></Link>
+              <UserButton/>
+          </div>:<div className="items-center flex pr-4">
+          <Button>Getting Started</Button>
+          </div>
+        }
     </div>
   )
 }

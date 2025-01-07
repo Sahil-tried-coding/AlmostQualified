@@ -13,7 +13,7 @@ function Header() {
               <Link to={"/dashboard"}>
               <Button variant="outline">Dashboard</Button></Link>
               <UserButton/>
-          </div>:<div className="items-center flex pr-4">
+          </div>:<div className="items-center flex pr-3">
           <Button>Getting Started</Button>
           </div>
         }

@@ -4,6 +4,7 @@ import { Button } from './components/ui/button'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useUser } from '@clerk/clerk-react'
 import Sigin from './Auth'
+import Header from './Custom/Header'
 
 function App() {
 
@@ -14,8 +15,8 @@ function App() {
   }
   return (
     <>
-
-      <Outlet/>
+  <Header/>
+      <Outlet />
     </>
   )
 }

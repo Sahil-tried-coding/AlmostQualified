@@ -13,7 +13,7 @@ function EditResume() {
 
   return (
     <div>
-      This is edit resume page
+      This is Edit resume page
     </div>
   );
 }

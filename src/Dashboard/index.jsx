@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Header from "../Custom/Header";
 import Add_Resume from "./components/Add_Resume";
+import { useUser } from "@clerk/clerk-react";
+import GlobalAPI from "../../Service/GlobalAPI";
 
 function Dashboard() {
+
+
+  const {user} = useUser()
+
+  const GetUsersResume = () =>{
+    GlobalAPI.CreateNewResume(user?.primaryEmailAddress?.emailAddress).then(Response=>{
+console.log(Response.data)
+    })
+  }
+  
+
+  useEffect(()=>{
+    GetUsersResume()
+  },[user])
   return (
     <div>
       {/* <Header /> */}

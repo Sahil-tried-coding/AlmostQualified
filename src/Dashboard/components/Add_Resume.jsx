@@ -13,11 +13,14 @@ import { useState } from "react";
 import { Button } from "../../components/ui/button";
 import { useUser } from "@clerk/clerk-react";
 import GlobalAPI from "../../../Service/GlobalAPI";
+import { useNavigation } from "react-router-dom";
 
 function Add_Resume() {
   const { user } = useUser();
   const [openDialog, setOpenDialog] = useState(false);
   const [title, setTitle] = useState("");
+  const navigation = useNavigation()
+  // const navigatg =Navigate()
 
   const onCreate = async () => {
     const uid = uuidv4();
@@ -34,6 +37,9 @@ function Add_Resume() {
     try {
       const response = await GlobalAPI.CreateNewResume(data);
       console.log("Success:", response.data);
+      navigation("/dashboard/resume/"+uid+"/edit")
+      // navigatg("/dashboard/resume/"+uid+"/edit")
+
       setOpenDialog(false);
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
@@ -44,7 +50,7 @@ function Add_Resume() {
     <div>
       <div
         onClick={() => setOpenDialog(true)}
-        className="w-[180px] h-[200px] bg-slate-100 flex justify-center items-center border-2 border-black border-dashed hover:scale-105 transition-all hover:cursor-pointer hover:shadow-lg rounded-md"
+        className="w-[180px] h-[200px] bg-slate-100 flex justify-center items-center hover:border-2 hover:border-black hover:border-dashed hover:scale-105 transition-all hover:cursor-pointer hover:shadow-lg rounded-md"
       >
         <PlusSquare />
       </div>

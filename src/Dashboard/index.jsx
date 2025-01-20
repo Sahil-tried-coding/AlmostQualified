@@ -1,32 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import Header from "../Custom/Header";
 import Add_Resume from "./components/Add_Resume";
 import { useUser } from "@clerk/clerk-react";
 import GlobalAPI from "../../Service/GlobalAPI";
+import Resume_items from "./components/Resume_items";
 
 function Dashboard() {
+
+  const [resumeList, setResumeList] = useState([])
 
 
   const {user} = useUser()
 
-  const GetUsersResume = () =>{
-    GlobalAPI.CreateNewResume(user?.primaryEmailAddress?.emailAddress).then(Response=>{
-console.log(Response.data)
-    })
+  const GetResumeList = () =>{
+  try {
+      GlobalAPI.GetUserResume(user?.primaryEmailAddress?.emailAddress).then(resp=>{
+        setResumeList(resp.data.data)
+            })
+    
+  } catch (error) {
+    console.log(error)
   }
-  
+}
 
   useEffect(()=>{
-    GetUsersResume()
+    user&&GetResumeList()
+    
   },[user])
+
+  // useEffect(()=>{
+  //   console.log(resumeList)
+  // },[])
+
+  // console.log(user?.primaryEmailAddress?.emailAddress)
   return (
     <div>
       {/* <Header /> */}
       <div className="p-6 md:p-8 lg:px-14">
         <h1 className="mb-4 text-xl font-bold ">Almost Qualified</h1>
         <h3 className="mb-4 font-semibold">The Ultimate Resume Generator With Ai</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         <Add_Resume/>
+        {
+          resumeList.length>0 && resumeList.map((resume,index)=>{
+            return <Resume_items resume={resume} key={index}/>
+          })
+        }
         </div>
       </div>
     </div>

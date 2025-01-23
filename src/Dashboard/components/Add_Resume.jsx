@@ -1,4 +1,4 @@
-import { PlusSquare } from "lucide-react";
+import { LoaderCircle, PlusSquare } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -13,13 +13,15 @@ import { useState } from "react";
 import { Button } from "../../components/ui/button";
 import { useUser } from "@clerk/clerk-react";
 import GlobalAPI from "../../../Service/GlobalAPI";
-import { useNavigation } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 function Add_Resume() {
   const { user } = useUser();
   const [openDialog, setOpenDialog] = useState(false);
   const [title, setTitle] = useState("");
-  const navigation = useNavigation()
+  const navigation = useNavigate()
+
+  const [loading, setLoading] = useState(false)
   // const navigatg =Navigate()
 
   const onCreate = async () => {
@@ -33,25 +35,31 @@ function Add_Resume() {
         user_name: user?.fullName,
       },
     };
-
+    
     try {
-      const response = await GlobalAPI.CreateNewResume(data);
-      console.log("Success:", response.data);
-      navigation("/dashboard/resume/"+uid+"/edit")
-      // navigatg("/dashboard/resume/"+uid+"/edit")
-
+      setLoading(true)
+      const resp = await GlobalAPI.CreateNewResume(data);
+      console.log("Success:", resp.data);
+      if(resp.data.data.documentId){
+        setLoading(false)
+        navigation("/dashboard/resume/"+resp.data.data.documentId+"/edit")
+        
+      }
+      
+      
       setOpenDialog(false);
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
     }
   };
-
+  
   return (
     <div>
       <div
         onClick={() => setOpenDialog(true)}
         className="w-[180px] h-[200px] bg-slate-100 flex justify-center items-center hover:border-2 hover:border-black hover:border-dashed hover:scale-105 transition-all hover:cursor-pointer hover:shadow-lg rounded-md"
       >
+      
         <PlusSquare />
       </div>
       <Dialog open={openDialog}>
@@ -69,7 +77,10 @@ function Add_Resume() {
             Cancel
           </Button>
           <Button disabled={!title} onClick={onCreate}>
-            Create
+            {
+              loading? <LoaderCircle className=" animate-spin"/> : "Create"
+            }
+            {/* Create */}
           </Button>
         </DialogContent>
       </Dialog>

@@ -7,7 +7,6 @@ import EducationPreview from "./preview/EducationPreview";
 import SkillsPreview from "./preview/SkillsPreview";
 function ResumePreview() {
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
-  console.log(resumeInfo.firstName);
   return (
     <div className="w-[43%] shadow-lg p-12 h-full border-t-[20px]" style={{ borderTopColor: resumeInfo?.themeColor }}>
       {/* <div

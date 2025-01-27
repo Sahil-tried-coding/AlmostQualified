@@ -16,7 +16,7 @@ export const CreateNewResume = (data) => axiosClient.post("/user-resumes", data)
 
 export const GetUserResume = (user_email) => axiosClient.get('/user-resumes?fillters[userEmail][$eq]='+user_email);
 
-
+const ok ="ok"
 export const UpdateFormData = (id,data) => axiosClient.put(`/user-resume/:${id}`,data)
 export default {
   CreateNewResume,GetUserResume,UpdateFormData

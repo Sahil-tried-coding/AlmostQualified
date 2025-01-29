@@ -8,15 +8,18 @@ import Dummy from "../../../../../Data/Dummy";
 
 function EditResume() {
 
- const [resumeInfo, setResumeInfo] = useState(Dummy)
+ const [resumeInfo, setResumeInfo] = useState(null)
 
 
 
   useEffect(()=>{
-    setResumeInfo(Dummy)
+     setResumeInfo(Dummy)
     // console.log(resumeInfo.firstName)
   },[])
 
+
+
+  
   return (
     <ResumeContext.Provider value={{resumeInfo,setResumeInfo}}>
 

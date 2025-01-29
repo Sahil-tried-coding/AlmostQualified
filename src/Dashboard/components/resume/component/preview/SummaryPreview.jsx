@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function SummaryPreview({resumeInfo}) {
+function SummaryPreview({ resumeInfo }) {
   return (
-    <div className='font-semibold text-xs'>
-        <h1></h1>
-        <h1>{resumeInfo?.summary}</h1>
+    <div className='font-semibold text-xs w-full   max-h-48 overflow-auto p-2 rounded-lg'>
+      <h1>{resumeInfo?.summary}</h1>
     </div>
-  )
+  );
 }
 
-export default SummaryPreview
+export default SummaryPreview;

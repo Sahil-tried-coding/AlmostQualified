@@ -16,8 +16,50 @@ export const CreateNewResume = (data) => axiosClient.post("/user-resumes", data)
 
 export const GetUserResume = (user_email) => axiosClient.get('/user-resumes?fillters[userEmail][$eq]='+user_email);
 
-const ok ="ok"
-export const UpdateFormData = (id,data) => axiosClient.put(`/user-resume/:${id}`,data)
+export const GetResumeById = (id) => 
+  axiosClient.get(`/user-resumes/${id}`);
+
+
+export const GetAllResumes = () => axiosClient.get('/user-resumes');
+
+
+const MyOneResume = (id) => axiosClient.get(`/user-resumes/${id}`)
+
+
+
+export const UpdateFormData = (id,data) => {
+//  axiosClient.put(`user-resumes/74`,data)
+ return axiosClient.put(`/user-resumes/${id}`,data)
+} 
 export default {
-  CreateNewResume,GetUserResume,UpdateFormData
+  MyOneResume,CreateNewResume,GetUserResume,UpdateFormData,GetAllResumes,GetResumeById
 };
+
+// import axios from "axios";
+
+// const API_KEY = import.meta.env.VITE_STRAPI_API_KEY;
+
+// const axiosClient = axios.create({
+//   baseURL: "http://localhost:1337/api/",
+//   headers: {
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer ${API_KEY}`,
+//   },
+// });
+
+// export const CreateNewResume = (data) => axiosClient.post("/user-resumes", { data });
+
+// export const GetUserResume = (user_email) => 
+//   axiosClient.get(`/user-resumes?filters[user_email][$eq]=${user_email}`);
+
+// export const UpdateFormData = (id, data) => {
+//   console.log('Making PUT request to:', `/user-resumes/${id}`);
+//   console.log('With data:', data);
+//   return axiosClient.put(`/user-resumes/${id}`, data);
+// };
+
+// export default {
+//   CreateNewResume,
+//   GetUserResume,
+//   UpdateFormData
+// };

@@ -1,7 +1,7 @@
 import React from "react";
 
 function personalDetails({ resumeInfo }) {
-  // console.log("this is the fistname", resumeinfo?.firstName)
+  console.log("this is the fistname", resumeInfo?.firstName)
   return (
     <div className="">
       {/* <div className="flex flex-col gap-3"> */}

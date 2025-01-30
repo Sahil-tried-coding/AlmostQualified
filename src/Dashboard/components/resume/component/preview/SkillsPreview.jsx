@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SkillsPreview({resumeInfo}) {
+function  SkillsPreview({resumeInfo}) {
   return (
     <div className='my-3'>
         <h1

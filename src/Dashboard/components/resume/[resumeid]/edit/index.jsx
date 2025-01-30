@@ -8,14 +8,16 @@ import Dummy from "../../../../../Data/Dummy";
 
 function EditResume() {
 
- const [resumeInfo, setResumeInfo] = useState(null)
+ const [resumeInfo, setResumeInfo] = useState(Dummy)
 
 
 
-  useEffect(()=>{
-     setResumeInfo(Dummy)
-    // console.log(resumeInfo.firstName)
-  },[])
+//  useEffect(() => {
+//   if (!resumeInfo) {
+//     setResumeInfo(Dummy);
+//   }
+// }, []);
+
 
 
 
@@ -23,7 +25,7 @@ function EditResume() {
   return (
     <ResumeContext.Provider value={{resumeInfo,setResumeInfo}}>
 
-    <div className="flex justify-evenly">
+    <div className="flex justify-evenly ">
       <Form/>
       <ResumePreview/>
     </div>

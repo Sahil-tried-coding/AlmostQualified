@@ -10,7 +10,7 @@ function ResumePreview() {
   return (
     <div className="w-[43%] shadow-2xl p-8 h-full border-t-[20px]" style={{ borderTopColor: resumeInfo?.themeColor }}>
       {
-        resumeInfo?<div >
+        resumeInfo&&<div >
         {/* <div
           className="h-[20px]"
           style={{ backgroundColor: resumeInfo?.themeColor }}
@@ -32,7 +32,7 @@ function ResumePreview() {
   
         {/* skills */}
         <SkillsPreview resumeInfo={resumeInfo} />
-      </div>:"loading"
+      </div>
       }
     </div>
   );

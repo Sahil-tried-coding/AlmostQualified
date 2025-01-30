@@ -68,7 +68,7 @@ function Form() {
 
       {/* Form steps */}
       {activeIndex === 1 && <PersonalDetails setEnableButton={setEnableButton} enableButton={enableButton}/>}
-      {activeIndex === 2 && <Summary setEnableButton={setEnableButton} enableButton={enableButton}/>}
+      {activeIndex === 2 && <Summary />}
       {/* Add other form steps here */}
     </div>
   );

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function personalDetails({ resumeInfo }) {
+function personalDetails({ resumeInfo,setResumeInfo }) {
   console.log("this is the fistname", resumeInfo?.firstName)
+
+  // useEffect(() => {
+  //   const savedData = JSON.parse(localStorage.getItem("resumeData"));
+  //   if (savedData) {
+  //     setResumeInfo(savedData);
+  //   }
+  // }, []);
   return (
     <div className="">
       {/* <div className="flex flex-col gap-3"> */}

@@ -12,7 +12,7 @@ function Summary() {
   const propmt = "Generate a 4-5 line resume summary in JSON format for a {Job Title} based on experience level (Fresher, Mid-Level, Experienced). The JSON should include fields: ExperienceLevel and Summary. Ensure the summary is concise, highlights key skills, and aligns with industry standards"
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
   const [loading, setLoading] = useState(false);
-  const [summary, setSummary] = useState();
+  const [summary, setSummary] = useState(resumeInfo.summary || null);
   const [aiGeneratedSummaryList, setAiGeneratedSummaryList] = useState([{}]);
 
   const params = useParams();
@@ -40,6 +40,12 @@ console.log(PROMPT)
   }
 
 
+  // useEffect(() => {
+  //   setResumeInfo({
+  //     ...resumeInfo,
+  //     summary: summary,
+  //   });
+  // }, []);
   useEffect(() => {
     setResumeInfo({
       ...resumeInfo,
@@ -61,7 +67,7 @@ console.log(PROMPT)
         summary:summary
       },
     };
-    console.log(data)
+    // console.log(data)
     try {
     //   const resp = await GlobalAPI.MyOneResume(params?.resume_id);
       const resp = await GlobalAPI.UpdateFormData(params?.resume_id, data);
@@ -90,13 +96,10 @@ console.log(PROMPT)
 
       <form onSubmit={onSave} className="gap-5 flex flex-col">
 
-
-
-
-
         <Textarea  
-       defaultValue={resumeInfo?.summary}
+      //  defaultValue={resumeInfo?.summary}
         name="summary"
+        value={summary}
           required
           onChange={(e) => setSummary(e.target.value)}
           className="h-32 mt-3"
@@ -123,7 +126,7 @@ console.log(PROMPT)
             ...prev,
             summary:item.Summary
           }
-          ))
+          )) 
         }}>
           <h1 className="text-purple-600 font-semibold text-lg"> { item.ExperienceLevel}</h1>
           <h1 className="text-sm font-semibold">{item.Summary}</h1>

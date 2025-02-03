@@ -37,6 +37,7 @@ function PersonalDetails({ enableButton, setEnableButton }) {
     try {
       const response = await GlobalAPI.UpdateFormData(params?.resume_id, data);
       console.log("✅ API Response:", response);
+      localStorage.setItem("resumeData", JSON.stringify(resumeInfo));
     } catch (error) {
       console.error("❌ Error while saving:", error);
     } finally {

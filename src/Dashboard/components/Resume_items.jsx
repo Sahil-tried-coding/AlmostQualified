@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Resume_items(resume) {
     // console.log(resume)
   return (
-    <Link to={`/dashboard/resume/`+resume.resume.resume_id+"/edit"}>
+    <Link to={`/dashboard/resume/`+resume.resume.documentId+"/edit"}>
         <div className="w-[180px] h-[200px] bg-secondary flex justify-center items-center flex-col  hover:scale-105 transition-all hover:cursor-pointer hover:shadow-lg rounded-md">
             <Notebook/>
             <h1>{resume.resume.title}</h1>

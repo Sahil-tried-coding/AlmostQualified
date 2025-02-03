@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ResumeContext } from "../../../../Context/ResumeContext";
-import PesonalDetails from "./preview/personalDetails";
+import PesonalDetails from "./preview/PersonalPreview.jsx";
 import ExperiencePreview from "./preview/ExperiencePreview";
 import SummaryPreview from "./preview/SummaryPreview";
 import EducationPreview from "./preview/EducationPreview";
@@ -16,7 +16,7 @@ function ResumePreview() {
           style={{ backgroundColor: resumeInfo?.themeColor }}
         ></div> */}
         {/* personal details */}
-        <PesonalDetails resumeInfo={resumeInfo} />
+        <PesonalDetails setResumeInfo={setResumeInfo} resumeInfo={resumeInfo} />
   
         {/* summary */}
   

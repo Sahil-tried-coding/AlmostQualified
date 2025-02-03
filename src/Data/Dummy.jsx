@@ -58,4 +58,25 @@ export default  {
       { id: 3, name: 'Typescript', rating: 80 },
     ]
   };
-  
+// themeColor: '#ff6666',
+
+// export default {
+//   address: "dubai",
+//   createdAt: "2025-02-01T07:19:27.727Z",
+//   documentId: "e2rwu8b3dgq436v9pioy1g9r",
+//   email: "shreyashinde990@gmail.com",
+//   firstName: "Amir",
+//   id: 118,
+//   jobTitle: "software testing",
+//   lastName: "khan",
+//   locale: "en",
+//   phone: "77889966",
+//   publishedAt: "2025-02-02T12:34:02.725Z",
+//   resume_id: "54f5362d-de60-495a-a3bf-ba25695c76c7",
+//   summary:
+//     "Highly motivated and detail-oriented recent graduate with a strong foundation in software testing methodologies. Eager to learn and contribute to a dynamic team. Proficient in using various testing tools and eager to apply practical knowledge in a real-world environment.",
+//   title: "software testing ",
+//   updatedAt: "2025-02-02T12:33:58.996Z",
+//   user_email: "sahil7972shaikh@gmail.com",
+//   user_name: "Paython Gamer",
+// };

@@ -23,8 +23,11 @@ function ExperiencePreview({ resumeInfo }) {
             <div className="my-3" key={index}>
               <h1 className="font-bold  text-sm my-1" style={{color:resumeInfo?.themeColor}} >{item.title}</h1>
               <div className="flex justify-between"><h1 className="text-xs font-semibold">{item.companyName}, {item.city}, {item.state}</h1>
-              <h1 className="font-semibold text-xs">{item.startDate} - {item.currentlyWorking ? "Present" : item.endDate} </h1></div>
-              <h1 className="text-xs font-semibold ">{item.workSummary}</h1>
+              <h1 className="font-semibold text-xs">{item.startDate}  to  {item.currentlyWorking ? "Present" : item.endDate} </h1></div>
+              {/* <h1 className="text-xs font-semibold ">{item.workSummary}</h1> */}
+              <div className="text-xs font-semibold " dangerouslySetInnerHTML={{__html:item.workSummary}}>
+
+              </div>
             </div>
           );
         })}

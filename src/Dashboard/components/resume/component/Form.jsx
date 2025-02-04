@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Summary from "./forms/Summary";
 import Experience from "./forms/Experience";
+import Education from "./forms/Education";
 
 
 function Form() {
@@ -71,6 +72,7 @@ function Form() {
       {activeIndex === 1 && <PersonalDetails setEnableButton={setEnableButton} enableButton={enableButton}/>}
       {activeIndex === 2 && <Summary />}
       {activeIndex === 3 && <Experience />}
+      {/* {activeIndex === 4 && <Education />} */}
       {/* Add other form steps here */}
     </div>
   );

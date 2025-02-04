@@ -3,6 +3,9 @@ import { Button } from "../../../../../components/ui/button";
 import { Input } from "../../../../../components/ui/input";
 import TextEditor from "./TextEditor";
 import { ResumeContext } from "../../../../../Context/ResumeContext";
+import { BrainIcon } from "lucide-react";
+import GlobalAPI from "../../../../../../Service/GlobalAPI";
+import { useParams } from "react-router-dom";
 // import { title } from "process";
 
 function Experience() {
@@ -26,6 +29,24 @@ const{name,value} = event.target;
 
 newEntries[index][name] = value
 setExperienceList(newEntries)
+}
+
+
+const onSave = async(e) =>{
+e.preventDefault()
+  const {user} = useParams
+
+  const data = {
+    data :{
+      Experience:experienceList
+    }
+  }
+
+  try {
+    GlobalAPI.UpdateFormData(user?.resume_id,data)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 useEffect(()=>{
@@ -87,9 +108,12 @@ setExperienceList(newEntries)
               End Date
               <Input onChange={(event)=>handleChange(index,event)} name="endDate" type="date" />
             </label>
+            <div>
 
+            </div>
+            
             <div className="col-span-2">
-              <TextEditor   onRichTextEditorChange = {e=>handleTextEditor(e,"workSummary",index)} />
+              <TextEditor index={index}   onRichTextEditorChange = {e=>handleTextEditor(e,"workSummary",index)} />
             </div>
           </div>
           <div className="flex justify-between w-full">
@@ -101,7 +125,7 @@ setExperienceList(newEntries)
               Remove
             </Button>
             </div>
-            <Button>Save</Button>
+            <Button onClick={onSave}>Save</Button>
           </div>
         </div>
       ))}

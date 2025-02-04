@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   BtnBold,
   BtnBulletList,
@@ -14,29 +14,83 @@ import {
   Separator,
   Toolbar,
 } from "react-simple-wysiwyg";
+import { Button } from "../../../../../components/ui/button";
+import { BrainIcon, LoaderCircle } from "lucide-react";
+import { ResumeContext } from "../../../../../Context/ResumeContext";
+import AIchatSession from "../../../../../../Service/GenerateAI";
 
 
 
 
-const PROMPT = "Job role : {JobTitle} based on the job role generate the 3  bullet points for resume experience section give in html format"
-function TextEditor({ onRichTextEditorChange }) {
 
-const generateFromAi = async()=>{
-    const prompt = PROMPT.replace("{JobTitle",)
-}
-  const [value, setValue] = useState();
+
+
+const TextEditor = ({ onRichTextEditorChange,index}) => {
+  const PROMPTOM = "Job role: {JobTitle}. Provide a single detailed experience summary paragraph (two-three lines) without structuring it in JSON or breaking it into multiple lines.and dont add heading experience_summary : like this"
+  const [value, setValue] = useState('');
+
+
+  const [loading, setLoading] = useState(false)
+
+  const{resumeInfo,setResumeInfo} = useContext(ResumeContext)
+
+  const GenerateFromAi = async () =>{
+    setLoading(true)
+    const prompt = PROMPTOM.replace("{JobTitle}",resumeInfo?.experience[index]?.title)
+    const result = await AIchatSession.sendMessage(prompt)
+    const resp = await (result.response.text())
+
+    console.log(resp)
+    // console.log(JSON.parse(resp))
+    setValue(resp)
+    // console.log(JSON.parse(result.response.text()))
+    // console.log("this is the backchodi",JSON.parse(result.response.text()))
+    // console.log(resp.data)
+    // console.log(prompt)
+setLoading(false)
+  }
+const GenerateWithAi = async () =>{
+    setLoading(true)
+    const prompt = PROMPTOM.replace("{JobTitle}",resumeInfo?.experience[index]?.title)
+    const result = await AIchatSession.sendMessage(prompt)
+
+    // console.log(result.response.text())
+    console.log(JSON.parse(result.response.text()))
+    // setValue(result.response.text())
+    setValue(result.response.text().replace("["," ").replace("]"," ").replace('"'," "))
+    console.log("this is the aigenerated list " , value)
+    setLoading(false)
+  }
+
+
+// const generateFromAi = async()=>{
+//     const prompt = PROMPT.replace("{JobTitle",)
+// }
   return (
     <EditorProvider>
+      <div className="flex  justify-end items-center mb-2">
+              {/* <h1>Add Summary</h1> */}
+              {
+                loading ? <LoaderCircle className="animate-spin" />:<Button
+                onClick={GenerateWithAi}
+                
+                  size="sm"
+                  variant="outline"
+                  className="bg-white border justify-end items-center border-purple-600 text-purple-600 flex gap-3"
+                >
+                  <BrainIcon/> Generate With Ai 
+                </Button>
+              }
+            </div>
       <Editor
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
-          onRichTextEditorChange(e);
+          console.log('Editor value:', e.target.value);
+          onRichTextEditorChange(e)
         }}
       >
         <Toolbar>
-          <BtnBold />
-          <BtnItalic />
           <BtnBold />
           <BtnItalic />
           <BtnUnderline />
@@ -45,15 +99,15 @@ const generateFromAi = async()=>{
           <BtnNumberedList />
           <BtnBulletList />
           <Separator />
-          {/* <BtnLink /> */}
           <BtnClearFormatting />
-          {/* <HtmlButton /> */}
           <Separator />
-          <BtnStyles />
+          {/* <BtnStyles /> */}
         </Toolbar>
       </Editor>
     </EditorProvider>
   );
-}
+};
+export default TextEditor
 
-export default TextEditor;
+
+    // setValue(result.response.text().replace("["," ").replace("]"," ").replace('"'," "))

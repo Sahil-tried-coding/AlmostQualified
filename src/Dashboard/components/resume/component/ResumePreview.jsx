@@ -24,14 +24,14 @@ function ResumePreview() {
   
         {/* professnial experience */}
   
-        <ExperiencePreview resumeInfo={resumeInfo} />
+        {/* <ExperiencePreview resumeInfo={resumeInfo} /> */}
   
         {/* education */}
   
-        <EducationPreview resumeInfo={resumeInfo} />
+        {/* <EducationPreview resumeInfo={resumeInfo} /> */}
   
         {/* skills */}
-        <SkillsPreview resumeInfo={resumeInfo} />
+        {/* <SkillsPreview resumeInfo={resumeInfo} /> */}
       </div>
       }
     </div>

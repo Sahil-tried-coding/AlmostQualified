@@ -23,7 +23,7 @@ export const GetResumeById = (id) =>
 export const GetAllResumes = () => axiosClient.get('/user-resumes');
 
 
-const MyOneResume = (id) => axiosClient.get(`/user-resumes/${id}`)
+export const MyOneResume = (id) => axiosClient.get(`/user-resumes/${id}`)
 
 
 

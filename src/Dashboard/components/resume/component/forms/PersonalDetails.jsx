@@ -12,18 +12,7 @@ function PersonalDetails({ enableButton, setEnableButton }) {
   const [loading, setLoading] = useState(false);
   const params = useParams();
 
-  // console.log(resumeInfo)
-
-  // let personalUser = ;
-  // useEffect(()=>{
-
-  //    GlobalAPI.GetResumeById(params?.resume_id).then((resp)=>{
-  //     console.log(resp.data)
- 
-  //   })
-
-  // },[])
-  // console.log(personalUser.data)
+  
   const onSave = async (e) => {
     e.preventDefault();
     setEnableButton(true);

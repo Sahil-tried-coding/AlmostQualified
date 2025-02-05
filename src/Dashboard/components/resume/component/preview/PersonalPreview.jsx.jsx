@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 function personalDetails({ resumeInfo,setResumeInfo }) {
-  console.log("this is the fistname", resumeInfo?.firstName)
+  // console.log("this is the fistname", resumeInfo?.firstName)
 
   // useEffect(() => {
   //   const savedData = JSON.parse(localStorage.getItem("resumeData"));

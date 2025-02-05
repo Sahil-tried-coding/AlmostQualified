@@ -27,7 +27,7 @@ import AIchatSession from "../../../../../../Service/GenerateAI";
 
 const TextEditor = ({ onRichTextEditorChange,index}) => {
   const PROMPTOM = "Job role: {JobTitle}. Provide a single detailed experience summary paragraph (two-three lines) without structuring it in JSON or breaking it into multiple lines.and dont add heading experience_summary : like this"
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState();
 
 
   const [loading, setLoading] = useState(false)

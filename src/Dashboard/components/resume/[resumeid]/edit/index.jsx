@@ -9,9 +9,7 @@ import GlobalAPI from "../../../../../../Service/GlobalAPI";
 
 function EditResume() {
 
- const [resumeInfo, setResumeInfo] = useState({
-  experience:[]
- })
+ const [resumeInfo, setResumeInfo] = useState()
 
  const params = useParams();
   useEffect(()=>{

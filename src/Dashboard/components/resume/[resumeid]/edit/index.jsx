@@ -9,14 +9,16 @@ import GlobalAPI from "../../../../../../Service/GlobalAPI";
 
 function EditResume() {
 
- const [resumeInfo, setResumeInfo] = useState()
+ const [resumeInfo, setResumeInfo] = useState({
+  experience:[]
+ })
 
  const params = useParams();
   useEffect(()=>{
 
-     GlobalAPI.GetResumeById(params?.resume_id).then((resp)=>{
+     GlobalAPI.GetExperienceComponent(params?.resume_id).then((resp)=>{
       // (resp.data)
-      setResumeInfo(resp.data.data)
+      setResumeInfo(resp?.data?.data)
  
     })
 

@@ -5,12 +5,14 @@ import ExperiencePreview from "./preview/ExperiencePreview";
 import SummaryPreview from "./preview/SummaryPreview";
 import EducationPreview from "./preview/EducationPreview";
 import SkillsPreview from "./preview/SkillsPreview";
+import { LoaderCircleIcon } from "lucide-react";
 function ResumePreview() {
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
+  // const [loading, setLoading] = useState(second)
   return (
     <div className="w-[43%] shadow-2xl p-8 h-full border-t-[20px]" style={{ borderTopColor: resumeInfo?.themeColor }}>
       {
-        resumeInfo&&<div >
+        resumeInfo?<div >
         {/* <div
           className="h-[20px]"
           style={{ backgroundColor: resumeInfo?.themeColor }}
@@ -24,7 +26,7 @@ function ResumePreview() {
   
         {/* professnial experience */}
   
-        {/* <ExperiencePreview resumeInfo={resumeInfo} /> */}
+        <ExperiencePreview resumeInfo={resumeInfo} />
   
         {/* education */}
   
@@ -32,7 +34,7 @@ function ResumePreview() {
   
         {/* skills */}
         {/* <SkillsPreview resumeInfo={resumeInfo} /> */}
-      </div>
+      </div>:<LoaderCircleIcon className="animate-spin" />
       }
     </div>
   );

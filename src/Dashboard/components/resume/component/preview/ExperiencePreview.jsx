@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import GlobalAPI from "../../../../../../Service/GlobalAPI";
 
 function ExperiencePreview({ resumeInfo }) {
+
+
+
+  const params = useParams()
+
+
+  useEffect(()=>{
+
+    const getUserExperience = async () =>{
+      const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id)
+      console.log("❌❌❌❌❌❌",userData.data.data.experience)
+    }
+
+    getUserExperience()
+
+  },[])
   // const experience =experience
   return (
     <div className="my-3">
@@ -19,7 +37,8 @@ function ExperiencePreview({ resumeInfo }) {
 
       <div>
          {/* eslint-disable-next-line react/prop-types */}
-        {resumeInfo?.experience.map((item, index) => {
+        {/* { resumeInfo?.experience.map((item, index) => { */}
+        {resumeInfo?.experience && resumeInfo?.experience.map((item, index) => {
           return (
             <div className="my-3" key={index}>
               <h1 className="font-bold  text-sm my-1" style={{color:resumeInfo?.themeColor}} >{item.title}</h1>

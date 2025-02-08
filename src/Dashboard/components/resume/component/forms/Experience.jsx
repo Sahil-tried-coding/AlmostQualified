@@ -24,18 +24,91 @@ function Experience() {
 
   const [loading, setLoading] = useState(false);
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
-  const [experienceList, setExperienceList] = useState([]);
+  const [experienceList, setExperienceList] = useState([formDetails]);
 
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  useEffect(() => {
+    if (resumeInfo?.experience && Array.isArray(resumeInfo.experience) && resumeInfo.experience.length > 0) {
+      setExperienceList(resumeInfo.experience);
+    } else {
+      // This will run for a new resume or if experience is undefined,
+      // initializing the state with one default object.
+      setExperienceList([formDetails]);
+    }
+  }, [resumeInfo]);
+  
+  // useEffect(() => {
+  //   if (initialLoad) {
+  //     if (resumeInfo?.experience?.length > 0) {
+  //       setExperienceList(resumeInfo.experience);
+  //     } else {
+  //       setExperienceList([{
+  //         title: "",
+  //         companyName: "",
+  //         city: "",
+  //         state: "",
+  //         startDate: "",
+  //         endDate: "",
+  //         workSummary: "",
+  //       }]);
+  //     }
+  //     setInitialLoad(false); // Only update once.
+  //   }
+  //   console.log("this is the lenght ",experienceList)
+  // }, [resumeInfo, initialLoad]);
+  
+  // useEffect(() => {
+  //   // When resumeInfo changes, update experienceList safely:
+  //   if (resumeInfo?.experience?.length > 0) {
+  //     setExperienceList(resumeInfo.experience);
+  //   } else {
+  //     // For a new resume where experience is undefined, initialize with a default object.
+  //     setExperienceList([formDetails]);
+  //   }
+  // }, []);
+  
+  
 
   useEffect(()=>{
-    resumeInfo?.experience.length>0&&setExperienceList(resumeInfo?.Experience)
+
+    const getUserExperience = async () =>{
+      const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id)
+      // const userInfo = await GlobalAPI.MyOneResume(params?.resume_id)
+      
+      // setResumeInfo(userInfo.data.data)
+      setResumeInfo(userData.data?.data)
+      setExperienceList(userData.data?.data?.experience)
+      // setResumeInfo(userData.data?.data || [formDetails])
+      // console.log("")
+      console.log("this is the Resume Info" ,resumeInfo)
+
+
+      // setResumeInfo({
+      //   ...resumeInfo,
+      //   experience:userData.data.data.experience
+      // })
+      // setResumeInfo((prevResumeInfo)=>({
+      //   ...prevResumeInfo,
+      //   experience:userData.data.data.experience
+
+      // }))
+      // setExperienceList(userData.data.data.experience)
+      
+      // console.log("❌❌❌❌❌❌",userData.data.data.experience)
+    }
     
-},[])
+    getUserExperience()
+    
+    
+  },[])
+
   const handleChange = (index, event) => {
     const newEntries = experienceList.slice();
     const { name, value } = event.target;
     newEntries[index][name] = value;
     setExperienceList(newEntries);
+    console.log("this is the live typing",newEntries[index])
   };
 
 
@@ -43,6 +116,15 @@ function Experience() {
   const onSave = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+
+    const updateResumeInfo = {
+      ...resumeInfo,
+      experience:experienceList
+    }
+    setResumeInfo(updateResumeInfo)
+
+
 
     const data = {
       data: {
@@ -95,9 +177,9 @@ function Experience() {
   };
 
 
-  console.log("this is the initial experience",resumeInfo?.experience)
-  console.log("this is the resumeInfodata",resumeInfo)
-  console.log("⬇️⬇️⬇️⬇️⬇️⬇️",experienceList)
+  // console.log("this is the initial experience",resumeInfo?.experience)
+  // console.log("this is the resumeInfodata",resumeInfo)
+  // console.log("⬇️⬇️⬇️⬇️⬇️⬇️",experienceList)
 
 
 
@@ -108,12 +190,14 @@ function Experience() {
       </h1>
       <p className="font-semibold text-sm">Add your previous job experience</p>
 
-      {experienceList.map((item, index) => (
+      { experienceList.map((item, index) => (
         <div key={index}>
           <div className="grid grid-cols-2 p-3 gap-3 border my-5 ">
             <label>
               Position Title
               <Input
+              defaultValue = {item.title}
+              // value={experienceList[index].title || ""}
                 onChange={(event) => handleChange(index, event)}
                 name="title"
                 type="text"
@@ -122,6 +206,9 @@ function Experience() {
             <label>
               Company Name
               <Input
+              defaultValue = {item.companyName}
+
+              // value={item.companyName || ""}
                 onChange={(event) => handleChange(index, event)}
                 name="companyName"
                 type="text"
@@ -130,6 +217,9 @@ function Experience() {
             <label>
               City
               <Input
+              // value={item.city || ""}
+              defaultValue = {item.city}
+
                 onChange={(event) => handleChange(index, event)}
                 name="city"
                 type="text"
@@ -138,6 +228,9 @@ function Experience() {
             <label>
               State
               <Input
+              // value={item.state || ""}
+              defaultValue = {item.state}
+
                 onChange={(event) => handleChange(index, event)}
                 name="state"
                 type="text"
@@ -146,6 +239,9 @@ function Experience() {
             <label>
               Start Date
               <Input
+              // value={item.startDate || ""}
+              defaultValue = {item.startDate}
+
                 onChange={(event) => handleChange(index, event)}
                 name="startDate"
                 type="date"
@@ -154,6 +250,9 @@ function Experience() {
             <label>
               End Date
               <Input
+              // value={item.endDate || ""}
+              defaultValue = {item.endDate}
+
                 onChange={(event) => handleChange(index, event)}
                 name="endDate"
                 type="date"
@@ -163,6 +262,8 @@ function Experience() {
 
             <div className="col-span-2">
               <TextEditor
+              defaultValue = {item.workSummary}
+
                 index={index}
                 onRichTextEditorChange={(e) =>
                   handleTextEditor(e, "workSummary", index)

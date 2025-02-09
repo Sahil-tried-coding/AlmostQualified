@@ -100,41 +100,82 @@
 export default {
   "id":161,
   "documentId":"minlphzlob6ttx5lwiw7t0gs",
-  "title":"mern dev",
+  "title":"",
   "user_email":"sahil7972shaikh@gmail.com",
   "resume_id":"876bb448-7e22-4fc8-a8e4-40f02de66f2b",
   "user_name":"Paython Gamer",
   "createdAt":"2025-02-05T07:20:24.657Z",
   "updatedAt":"2025-02-08T12:07:20.154Z",
   "publishedAt":"2025-02-08T12:07:25.281Z",
-  "locale":"en",
-  "firstName":"Sahil",
-  "lastName":"Shaikh",
-  "jobTitle":"front-end Developer",
-  "phone":"07972483330",
-  "email":"sahil9359shaikh@gmail.com",
-  "address":"junegaon",
-  "summary":"Highly motivated and detail-oriented front-end developer with a strong foundation in HTML, CSS, and JavaScript. Eager to learn and contribute to dynamic web development projects. Proven ability to quickly grasp new technologies and collaborate effectively within a team.",
+  "locale":"",
+  "firstName":"",
+  "lastName":"",
+  "jobTitle":"",
+  "phone":"",
+  "email":"",
+  "address":"",
+  "summary":"",
   "experience":[
      {
-        "id":56,
-        "title":"mern dev",
-        "companyName":"meta",
-        "city":"Junegaon",
-        "state":"MAHARASHTRA",
-        "workSummary":" Experienced MERN stack developer with a proven track record in building and deploying robust web applications.  Proficient in JavaScript, React, Node.js, and MongoDB, with a strong understanding of full-stack development principles.  Passionate about creating user-friendly and scalable applications.\"",
-        "startDate":"2025-02-02",
-        "endDate":"2025-03-01"
-     },
-     {
-        "id":57,
-        "title":"porduct manager",
-        "companyName":"youtube",
-        "city":"pune",
-        "state":"New delhi",
+        "id":"",
+        "title":"",
+        "companyName":"",
+        "city":"",
+        "state":"",
         "workSummary":"",
-        "startDate":"2025-02-27",
-        "endDate":"2025-02-28"
-     }
+        "startDate":"",
+        "endDate":""
+     },
+   //   {
+   //      "id":57,
+   //      "title":"porduct manager",
+   //      "companyName":"youtube",
+   //      "city":"pune",
+   //      "state":"New delhi",
+   //      "workSummary":"",
+   //      "startDate":"2025-02-27",
+   //      "endDate":"2025-02-28"
+   //   }
   ]
 }
+// export default {
+//   "id":161,
+//   "documentId":"minlphzlob6ttx5lwiw7t0gs",
+//   "title":"mern dev",
+//   "user_email":"sahil7972shaikh@gmail.com",
+//   "resume_id":"876bb448-7e22-4fc8-a8e4-40f02de66f2b",
+//   "user_name":"Paython Gamer",
+//   "createdAt":"2025-02-05T07:20:24.657Z",
+//   "updatedAt":"2025-02-08T12:07:20.154Z",
+//   "publishedAt":"2025-02-08T12:07:25.281Z",
+//   "locale":"en",
+//   "firstName":"Sahil",
+//   "lastName":"Shaikh",
+//   "jobTitle":"front-end Developer",
+//   "phone":"07972483330",
+//   "email":"sahil9359shaikh@gmail.com",
+//   "address":"junegaon",
+//   "summary":"Highly motivated and detail-oriented front-end developer with a strong foundation in HTML, CSS, and JavaScript. Eager to learn and contribute to dynamic web development projects. Proven ability to quickly grasp new technologies and collaborate effectively within a team.",
+//   "experience":[
+//      {
+//         "id":56,
+//         "title":"mern dev",
+//         "companyName":"meta",
+//         "city":"Junegaon",
+//         "state":"MAHARASHTRA",
+//         "workSummary":" Experienced MERN stack developer with a proven track record in building and deploying robust web applications.  Proficient in JavaScript, React, Node.js, and MongoDB, with a strong understanding of full-stack development principles.  Passionate about creating user-friendly and scalable applications.\"",
+//         "startDate":"2025-02-02",
+//         "endDate":"2025-03-01"
+//      },
+//    //   {
+//    //      "id":57,
+//    //      "title":"porduct manager",
+//    //      "companyName":"youtube",
+//    //      "city":"pune",
+//    //      "state":"New delhi",
+//    //      "workSummary":"",
+//    //      "startDate":"2025-02-27",
+//    //      "endDate":"2025-02-28"
+//    //   }
+//   ]
+// }

@@ -24,80 +24,58 @@ function Experience() {
   const [loading, setLoading] = useState(false);
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
   const [experienceList, setExperienceList] = useState([formDetails]);
-
-  // const [initialLoad, setInitialLoad] = useState(true);
+const [addExpi, setAddExpi] = useState(true)
 
   useEffect(() => {
     if (resumeInfo?.experience && Array.isArray(resumeInfo.experience) && resumeInfo.experience.length > 0) {
       setExperienceList(resumeInfo.experience);
     } else {
-      // This will run for a new resume or if experience is undefined,
-      // initializing the state with one default object.
+      setExperienceList([formDetails]);
+      console.log("⭐⭐⭐⭐⭐⭐running running ⭐⭐⭐⭐")
+    }
+  }, []);
+  
+  
+
+
+  useEffect(() => {
+    // When resumeInfo changes, update experienceList safely:
+    if (resumeInfo?.experience?.length > 0) {
+      setExperienceList(resumeInfo.experience);
+    } else {
+      // For a new resume where experience is undefined, initialize with a default object.
       setExperienceList([formDetails]);
     }
-  }, [resumeInfo]);
-  
-  // useEffect(() => {
-  //   if (initialLoad) {
-  //     if (resumeInfo?.experience?.length > 0) {
-  //       setExperienceList(resumeInfo.experience);
-  //     } else {
-  //       setExperienceList([{
-  //         title: "",
-  //         companyName: "",
-  //         city: "",
-  //         state: "",
-  //         startDate: "",
-  //         endDate: "",
-  //         workSummary: "",
-  //       }]);
-  //     }
-  //     setInitialLoad(false); // Only update once.
-  //   }
-  //   console.log("this is the lenght ",experienceList)
-  // }, [resumeInfo, initialLoad]);
-  
-  // useEffect(() => {
-  //   // When resumeInfo changes, update experienceList safely:
-  //   if (resumeInfo?.experience?.length > 0) {
-  //     setExperienceList(resumeInfo.experience);
-  //   } else {
-  //     // For a new resume where experience is undefined, initialize with a default object.
-  //     setExperienceList([formDetails]);
-  //   }
-  // }, []);
-  
+  }, []);
   
 
-  useEffect(()=>{
+  const getUserExperience = async () =>{
+    const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id)
 
-    const getUserExperience = async () =>{
-      const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id)
-      // const userInfo = await GlobalAPI.MyOneResume(params?.resume_id)
-      
-      // setResumeInfo(userInfo.data.data)
-      setResumeInfo(userData.data?.data)
-      setExperienceList(userData.data?.data?.experience)
-      // setResumeInfo(userData.data?.data || [formDetails])
-      // console.log("")
-      console.log("this is the Resume Info" ,resumeInfo)
+    setExperienceList(userData.data?.data?.experience)
+  
+    console.log("this is the Resume Info" ,resumeInfo)
 
 
-      // setResumeInfo({
-      //   ...resumeInfo,
-      //   experience:userData.data.data.experience
-      // })
-      // setResumeInfo((prevResumeInfo)=>({
-      //   ...prevResumeInfo,
-      //   experience:userData.data.data.experience
+    // setResumeInfo({
+    //   ...resumeInfo,
+    //   experience:userData.data.data.experience
+    // })
+    // setResumeInfo((prevResumeInfo)=>({
+    //   ...prevResumeInfo,
+    //   experience:userData.data.data.experience
 
-      // }))
-      // setExperienceList(userData.data.data.experience)
-      
-      // console.log("❌❌❌❌❌❌",userData.data.data.experience)
-    }
+    // }))
+    // setExperienceList(userData.data.data.experience)
     
+    // console.log("❌❌❌❌❌❌",userData.data.data.experience)
+  }
+  
+  
+  
+  useEffect(()=>{
     getUserExperience()
+
     
     
   },[])
@@ -151,9 +129,9 @@ function Experience() {
   //   }
   // }, []);
   
-  // useEffect(() => {
-  //   setResumeInfo({ ...resumeInfo, experience: experienceList });
-  // }, [experienceList]);
+  useEffect(() => {
+    setResumeInfo({ ...resumeInfo, experience: experienceList });
+  }, [experienceList]);
 
   const handleTextEditor = (e, name, index) => {
     const newEntries = experienceList.slice();
@@ -162,6 +140,7 @@ function Experience() {
   };
 
   const addExperience = () => {
+    setAddExpi(false)
     setExperienceList([...experienceList, {title: "",
       companyName: "",
       city: "",
@@ -178,7 +157,7 @@ function Experience() {
 
   // console.log("this is the initial experience",resumeInfo?.experience)
   // console.log("this is the resumeInfodata",resumeInfo)
-  // console.log("⬇️⬇️⬇️⬇️⬇️⬇️",experienceList)
+  console.log("⬇️⬇️⬇️⬇️⬇️⬇️",experienceList)
 
 
 
@@ -188,7 +167,17 @@ function Experience() {
         Professional Experience
       </h1>
       <p className="font-semibold text-sm">Add your previous job experience</p>
-
+      {addExpi && <div className="flex justify-between w-full">
+            <div className="gap-5 flex">
+              <Button
+                onClick={addExperience}
+                variant="outline"
+                className="text-purple-600"
+              >
+                + Add  Experience
+              </Button>
+            </div>
+          </div>}
       { experienceList.map((item, index) => (
         <div key={index}>
           <div className="grid grid-cols-2 p-3 gap-3 border my-5 ">
@@ -261,7 +250,7 @@ function Experience() {
 
             <div className="col-span-2">
               <TextEditor
-              defaultValue = {item.workSummary}
+              defaultValue = {item.workSummary }
 
                 index={index}
                 onRichTextEditorChange={(e) =>
@@ -298,5 +287,3 @@ function Experience() {
 }
 
 export default Experience;
-
-

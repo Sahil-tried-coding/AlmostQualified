@@ -39,7 +39,7 @@ export const UpdateFormData = (id,data) => {
  return axiosClient.put(`/user-resumes/${id}`,data)
 } 
 export default {
-  GetEducationComponent,GetExperienceComponent,MyOneResume,CreateNewResume,GetUserResume,UpdateFormData,GetAllResumes,GetResumeById
+  GetSkillsComponent, GetEducationComponent,GetExperienceComponent,MyOneResume,CreateNewResume,GetUserResume,UpdateFormData,GetAllResumes,GetResumeById
 };
 
 // import axios from "axios";

@@ -16,7 +16,7 @@ import Skills from "./forms/Skills";
 
 function Form() {
   const TOTAL_STEPS = 5;
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(5);
   const [enableButton, setEnableButton] = useState(false);
   const handleNext = () => {
     if (activeIndex < TOTAL_STEPS) {

@@ -138,7 +138,7 @@ function Education() {
               variant="outline"
               className="text-purple-600"
             >
-              + Add Experience
+              + Add Education
             </Button>
           </div>
         </div>

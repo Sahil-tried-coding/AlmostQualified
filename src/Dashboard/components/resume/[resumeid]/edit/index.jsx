@@ -14,6 +14,7 @@ function EditResume() {
  const params = useParams();
   useEffect(()=>{
 
+    //  GlobalAPI.GetEducationComponent(params?.resume_id).then((resp)=>{
      GlobalAPI.GetResumeById(params?.resume_id).then((resp)=>{
       // (resp.data)
       setResumeInfo(resp?.data?.data)

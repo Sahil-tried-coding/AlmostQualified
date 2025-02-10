@@ -41,9 +41,9 @@ function Experience() {
   const getUserExperience = async () => {
     try {
       const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id);
-      const education = await GlobalAPI.GetResumeById(params?.resume_id);
+      // const education = await GlobalAPI.GetResumeById(params?.resume_id);
 
-      console.log("this is the education from experience",education)
+      // console.log("this is the education from experience",education)
       // If the fetched data has an experience array, update local state.
       if (userData.data?.data?.experience && Array.isArray(userData.data.data.experience)) {
         setExperienceList(userData.data.data.experience);

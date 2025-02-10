@@ -3,14 +3,14 @@ import { Button } from "../../../../../components/ui/button";
 import { Input } from "../../../../../components/ui/input";
 import TextEditor from "./TextEditor";
 import { ResumeContext } from "../../../../../Context/ResumeContext";
-import { BrainIcon, LoaderCircleIcon } from "lucide-react";
+import { LoaderCircleIcon } from "lucide-react";
 import GlobalAPI from "../../../../../../Service/GlobalAPI";
 import { useParams } from "react-router-dom";
 
 function Experience() {
-
-
   const params = useParams();
+
+  // Default object for a new experience entry.
   const formDetails = {
     title: "",
     companyName: "",
@@ -19,173 +19,138 @@ function Experience() {
     startDate: "",
     endDate: "",
     workSummary: "",
+    present: false,
   };
 
   const [loading, setLoading] = useState(false);
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
   const [experienceList, setExperienceList] = useState([formDetails]);
-const [addExpi, setAddExpi] = useState(true)
+  const [addExpi, setAddExpi] = useState(true);
 
+  // On component mount, initialize the local state from resumeInfo or default
   useEffect(() => {
     if (resumeInfo?.experience && Array.isArray(resumeInfo.experience) && resumeInfo.experience.length > 0) {
       setExperienceList(resumeInfo.experience);
     } else {
       setExperienceList([formDetails]);
-      console.log("⭐⭐⭐⭐⭐⭐running running ⭐⭐⭐⭐")
+      console.log("Initialized with default experience.");
     }
-  }, []);
-  
-  
+  }, []); // run once on mount
 
+  // Fetch experience data from the backend on mount.
+  const getUserExperience = async () => {
+    try {
+      const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id);
+      const education = await GlobalAPI.GetResumeById(params?.resume_id);
 
-  useEffect(() => {
-    // When resumeInfo changes, update experienceList safely:
-    if (resumeInfo?.experience?.length > 0) {
-      setExperienceList(resumeInfo.experience);
-    } else {
-      // For a new resume where experience is undefined, initialize with a default object.
+      console.log("this is the education from experience",education)
+      // If the fetched data has an experience array, update local state.
+      if (userData.data?.data?.experience && Array.isArray(userData.data.data.experience)) {
+        setExperienceList(userData.data.data.experience);
+      } else {
+        setExperienceList([formDetails]);
+      }
+      console.log("Fetched experience:", userData.data?.data?.experience);
+    } catch (error) {
+      console.error("Error fetching experience:", error);
       setExperienceList([formDetails]);
     }
-  }, []);
-  
+  };
 
-  const getUserExperience = async () =>{
-    const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id)
+  useEffect(() => {
+    getUserExperience();
+  }, [params.resume_id]);
 
-    setExperienceList(userData.data?.data?.experience)
-  
-    console.log("this is the Resume Info" ,resumeInfo)
-
-
-    // setResumeInfo({
-    //   ...resumeInfo,
-    //   experience:userData.data.data.experience
-    // })
-    // setResumeInfo((prevResumeInfo)=>({
-    //   ...prevResumeInfo,
-    //   experience:userData.data.data.experience
-
-    // }))
-    // setExperienceList(userData.data.data.experience)
-    
-    // console.log("❌❌❌❌❌❌",userData.data.data.experience)
-  }
-  
-  
-  
-  useEffect(()=>{
-    getUserExperience()
-
-    
-    
-  },[])
-
+  // Handle text input changes.
   const handleChange = (index, event) => {
-    const newEntries = experienceList.slice();
+    const newEntries = [...experienceList];
     const { name, value } = event.target;
     newEntries[index][name] = value;
     setExperienceList(newEntries);
-    console.log("this is the live typing",newEntries[index])
+    console.log("Updated entry at index", index, ":", newEntries[index]);
   };
 
+  // Handle checkbox changes for "present"
+  const handleCheckboxChange = (index, event) => {
+    const newEntries = [...experienceList];
+    newEntries[index].present = event.target.checked;
+    setExperienceList(newEntries);
+    console.log("Checkbox changed at index", index, "to", event.target.checked);
+  };
 
+  // Handle changes from the TextEditor.
+  const handleTextEditor = (e, name, index) => {
+    const newEntries = [...experienceList];
+    newEntries[index][name] = e.target.value;
+    setExperienceList(newEntries);
+    console.log("Updated workSummary at index", index, ":", newEntries[index].workSummary);
+  };
 
+  // Append a new experience entry.
+  const addExperience = () => {
+    setAddExpi(false);
+    setExperienceList([...experienceList, { ...formDetails }]);
+  };
+
+  // Remove the last experience entry.
+  const removeExperience = () => {
+    setExperienceList((prev) => prev.slice(0, -1));
+  };
+
+  // Update the global context whenever the local experienceList changes.
+  useEffect(() => {
+    setResumeInfo((prev) => ({ ...prev, experience: experienceList }));
+  }, [experienceList, setResumeInfo]);
+
+  // Save the data to the backend.
   const onSave = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-
-    const updateResumeInfo = {
-      ...resumeInfo,
-      experience:experienceList
-    }
-    setResumeInfo(updateResumeInfo)
-
-
+    // Update global context immediately on save.
+    setResumeInfo((prev) => ({ ...prev, experience: experienceList }));
 
     const data = {
       data: {
-        experience: experienceList.map(({ id, ...rest }) => rest), // ✅ Send correct format
+        experience: experienceList.map(({ id, ...rest }) => rest),
       },
     };
-      console.log(experienceList)
+
+    console.log("Data to be saved:", experienceList);
 
     try {
       const resp = await GlobalAPI.UpdateFormData(params?.resume_id, data);
-
       if (resp.data) {
-        console.log("respones saved ✅✅✅✅✅",resp.data);
+        console.log("Response saved:", resp.data);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error saving experience:", error);
     }
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   if (resumeInfo?.experience?.length >0) {
-  //     setExperienceList(resumeInfo.experience);
-  //     console.log("⬇️⬇️⬇️⬇️⬇️⬇️",experienceList)
-  //   }
-  // }, []);
-  
-  useEffect(() => {
-    setResumeInfo({ ...resumeInfo, experience: experienceList });
-  }, [experienceList]);
-
-  const handleTextEditor = (e, name, index) => {
-    const newEntries = experienceList.slice();
-    newEntries[index][name] = e.target.value;
-    setExperienceList(newEntries);
-  };
-
-  const addExperience = () => {
-    setAddExpi(false)
-    setExperienceList([...experienceList, {title: "",
-      companyName: "",
-      city: "",
-      state: "",
-      startDate: "",
-      endDate: "",
-      workSummary: ""}]);
-  };
-
-  const removeExperience = () => {
-    setExperienceList((experienceList) => experienceList.slice(0, -1));
-  };
-
-
-  // console.log("this is the initial experience",resumeInfo?.experience)
-  // console.log("this is the resumeInfodata",resumeInfo)
-  console.log("⬇️⬇️⬇️⬇️⬇️⬇️",experienceList)
-
-
-
   return (
-    <div className="p-5 border-t-purple-600 rounded-lg shadow-lg  border-t-8">
-      <h1 className="font-bold text-lg text-center mb-2">
-        Professional Experience
-      </h1>
+    <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
+      <h1 className="font-bold text-lg text-center mb-2">Professional Experience</h1>
       <p className="font-semibold text-sm">Add your previous job experience</p>
-      {addExpi && <div className="flex justify-between w-full">
-            <div className="gap-5 flex">
-              <Button
-                onClick={addExperience}
-                variant="outline"
-                className="text-purple-600"
-              >
-                + Add  Experience
-              </Button>
-            </div>
-          </div>}
-      { experienceList.map((item, index) => (
+
+      {addExpi && (
+        <div className="flex justify-between w-full">
+          <div className="gap-5 flex">
+            <Button onClick={addExperience} variant="outline" className="text-purple-600">
+              + Add Experience
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {experienceList.map((item, index) => (
         <div key={index}>
-          <div className="grid grid-cols-2 p-3 gap-3 border my-5 ">
+          <div className="grid grid-cols-2 p-3 gap-3 border my-5">
             <label>
               Position Title
               <Input
-              defaultValue = {item.title}
-              // value={experienceList[index].title || ""}
+                value={item.title}
                 onChange={(event) => handleChange(index, event)}
                 name="title"
                 type="text"
@@ -194,9 +159,7 @@ const [addExpi, setAddExpi] = useState(true)
             <label>
               Company Name
               <Input
-              defaultValue = {item.companyName}
-
-              // value={item.companyName || ""}
+                value={item.companyName}
                 onChange={(event) => handleChange(index, event)}
                 name="companyName"
                 type="text"
@@ -205,9 +168,7 @@ const [addExpi, setAddExpi] = useState(true)
             <label>
               City
               <Input
-              // value={item.city || ""}
-              defaultValue = {item.city}
-
+                value={item.city}
                 onChange={(event) => handleChange(index, event)}
                 name="city"
                 type="text"
@@ -216,9 +177,7 @@ const [addExpi, setAddExpi] = useState(true)
             <label>
               State
               <Input
-              // value={item.state || ""}
-              defaultValue = {item.state}
-
+                value={item.state}
                 onChange={(event) => handleChange(index, event)}
                 name="state"
                 type="text"
@@ -227,52 +186,47 @@ const [addExpi, setAddExpi] = useState(true)
             <label>
               Start Date
               <Input
-              // value={item.startDate || ""}
-              defaultValue = {item.startDate}
-
+                value={item.startDate}
                 onChange={(event) => handleChange(index, event)}
                 name="startDate"
                 type="date"
               />
             </label>
-            <label>
-              End Date
-              <Input
-              // value={item.endDate || ""}
-              defaultValue = {item.endDate}
-
-                onChange={(event) => handleChange(index, event)}
-                name="endDate"
-                type="date"
-              />
-            </label>
-            <div></div>
-
+            <div className="flex items-center justify-evenly gap-3">
+              <label>
+                End Date
+                <Input
+                  value={item.endDate}
+                  onChange={(event) => handleChange(index, event)}
+                  name="endDate"
+                  type="date"
+                />
+              </label>
+              <label className="flex flex-row-reverse items-center justify-evenly gap-2">
+                Present
+                <Input
+                  name="present"
+                  type="checkbox"
+                  className="h-4"
+                  checked={item.present}
+                  onChange={(event) => handleCheckboxChange(index, event)}
+                />
+              </label>
+            </div>
             <div className="col-span-2">
               <TextEditor
-              defaultValue = {item.workSummary }
-
+                defaultValue={item.workSummary}
                 index={index}
-                onRichTextEditorChange={(e) =>
-                  handleTextEditor(e, "workSummary", index)
-                }
+                onRichTextEditorChange={(e) => handleTextEditor(e, "workSummary", index)}
               />
             </div>
           </div>
           <div className="flex justify-between w-full">
             <div className="gap-5 flex">
-              <Button
-                onClick={addExperience}
-                variant="outline"
-                className="text-purple-600"
-              >
+              <Button onClick={addExperience} variant="outline" className="text-purple-600">
                 + Add more Experience
               </Button>
-              <Button
-                onClick={removeExperience}
-                variant="outline"
-                className="text-purple-600"
-              >
+              <Button onClick={removeExperience} variant="outline" className="text-purple-600">
                 Remove
               </Button>
             </div>

@@ -17,13 +17,13 @@ function  SkillsPreview({resumeInfo}) {
       />
 
 
-      <div className='grid grid-cols-2 gap-3 my-4'>
+{resumeInfo?.skills &&<div className='grid grid-cols-2 gap-3 my-4'>
       {
-        resumeInfo?.skills.map((item,index)=>(
+         resumeInfo?.skills.map((item,index)=>(
             <div className='flex justify-between items-center' key={index}>
-                <h1>{item.name}</h1>
+                <h1>{item.skillName}</h1>
                 <div className='w-[120px] bg-slate-200 h-2 '>
-                    <div className='h-2' style={{backgroundColor:resumeInfo?.themeColor,
+                    <div className='h-2' style={{backgroundColor:resumeInfo?.themeColor || '#ff6666',
                             width:item?.rating+'%'}}>
                         {/* <div >
 
@@ -35,7 +35,7 @@ function  SkillsPreview({resumeInfo}) {
 
         ))
       }
-      </div>
+      </div>}
     </div>
   )
 }

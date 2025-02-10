@@ -30,10 +30,10 @@ function ResumePreview() {
   
         {/* education */}
   
-        {/* <EducationPreview resumeInfo={resumeInfo} /> */}
+        <EducationPreview resumeInfo={resumeInfo} />
   
         {/* skills */}
-        {/* <SkillsPreview resumeInfo={resumeInfo} /> */}
+        <SkillsPreview resumeInfo={resumeInfo} />
       </div>:<LoaderCircleIcon className="animate-spin" />
       }
     </div>

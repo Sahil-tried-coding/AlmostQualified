@@ -136,7 +136,24 @@ export default {
    //      "startDate":"2025-02-27",
    //      "endDate":"2025-02-28"
    //   }
-  ]
+  ],
+  "skills": [
+          { id: 1, name: 'Angular', rating: 80 },
+          { id: 2, name: 'React', rating: 100 },
+          { id: 3, name: 'Node', rating: 90 },
+          { id: 3, name: 'Typescript', rating: 80 },
+        ],
+  "education": [
+          {
+            "id":'',
+            "universityName": '',
+            "startDate": '',
+            "endDate": '',
+            "degree": '',
+            "major": '',
+            "description": ''
+          }
+        ]
 }
 // export default {
 //   "id":161,

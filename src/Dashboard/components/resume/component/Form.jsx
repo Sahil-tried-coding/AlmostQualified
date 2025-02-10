@@ -10,11 +10,13 @@ import {
 import Summary from "./forms/Summary";
 import Experience from "./forms/Experience";
 import Education from "./forms/Education";
+import Skiils from "./forms/Skills";
+import Skills from "./forms/Skills";
 
 
 function Form() {
   const TOTAL_STEPS = 5;
-  const [activeIndex, setActiveIndex] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [enableButton, setEnableButton] = useState(false);
   const handleNext = () => {
     if (activeIndex < TOTAL_STEPS) {
@@ -72,7 +74,8 @@ function Form() {
       {activeIndex === 1 && <PersonalDetails setEnableButton={setEnableButton} enableButton={enableButton}/>}
       {activeIndex === 2 && <Summary />}
       {activeIndex === 3 && <Experience />}
-      {/* {activeIndex === 4 && <Education />} */}
+      {activeIndex === 4 && <Education />}
+      {activeIndex === 5 && <Skills />}
       {/* Add other form steps here */}
     </div>
   );

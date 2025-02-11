@@ -214,7 +214,7 @@ const handleChange = (index,name,value) =>{
   return (
     <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
       <h1 className="font-bold text-lg text-center mb-2">Skills</h1>
-      <p className="font-semibold text-sm">Add your Key Skills</p>
+      <p className="font-semibold text-sm">Add your Skills  Which make impact</p>
       <div>
       {
           skillsList?.map((item,index)=>(

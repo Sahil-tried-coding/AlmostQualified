@@ -10,16 +10,37 @@ import GlobalAPI from "../../../../../../Service/GlobalAPI";
 function EditResume() {
 
  const [resumeInfo, setResumeInfo] = useState()
+ const [fieldSelected , setFieldSelected] = useState({
+  Experience:false,
+  Project:false,
+  Skills:false,
+  Education:false
+ })
 
  const params = useParams();
   useEffect(()=>{
 
     //  GlobalAPI.GetEducationComponent(params?.resume_id).then((resp)=>{
      GlobalAPI.GetResumeById(params?.resume_id).then((resp)=>{
-      // (resp.data)
+      
       setResumeInfo(resp?.data?.data)
  
     })
+
+  },[])
+
+
+
+
+  useEffect(()=>{
+
+
+    GlobalAPI.GetFieldRequired(params?.resume_id).then((resp)=>{
+      setFieldSelected(resp?.data?.data)
+      console.log("this is from the backend",fieldSelected)
+    })
+
+
 
   },[])
 
@@ -34,7 +55,7 @@ function EditResume() {
 
   
   return (
-    <ResumeContext.Provider value={{resumeInfo,setResumeInfo}}>
+    <ResumeContext.Provider value={{resumeInfo,setResumeInfo,fieldSelected,setFieldSelected}}>
 
     <div className="flex justify-evenly ">
       <Form/>

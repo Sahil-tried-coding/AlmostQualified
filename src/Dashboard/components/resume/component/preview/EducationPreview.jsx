@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ResumeContext } from '../../../../../Context/ResumeContext';
 
 function EducationPreview({resumeInfo}) {
+    // const { fieldSelected, setFieldSelected } = useContext(ResumeContext);
+  
   return (
     <div className='my-3'>
         <h1
@@ -17,7 +20,7 @@ function EducationPreview({resumeInfo}) {
       />
 
       {
-        resumeInfo?.education && resumeInfo?.education.map((item,index)=>(
+         resumeInfo?.education.map((item,index)=>(
             <div  className='my-2' key={index}>
                 <h1 className='font-bold text-sm' style={{ color: resumeInfo?.themeColor }}>{item.universityName}</h1>
                 <div className='text-xs font-semibold flex justify-between'><h1>{item.degree} in {item.major}</h1> <h1>{item.startDate} To {item.isPresent ? "Present":item.endDate}</h1></div>

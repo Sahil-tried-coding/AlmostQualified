@@ -3,35 +3,35 @@ import { useParams } from "react-router-dom";
 import GlobalAPI from "../../../../../../Service/GlobalAPI";
 import  { useContext } from 'react'
 import { ResumeContext } from '../../../../../Context/ResumeContext';
-function ExperiencePreview({ resumeInfo }) {
+function Projectspreview({ resumeInfo }) {
   
-  // const { fieldSelected, setFieldSelected } = useContext(ResumeContext);
+  const { fieldSelected, setFieldSelected } = useContext(ResumeContext);
 
 
   const params = useParams()
 
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    const getUserExperience = async () =>{
-      const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id)
-      console.log("❌❌❌❌❌❌",userData.data.data.experience)
-    }
+  //   const getUserExperience = async () =>{
+  //     const userData = await GlobalAPI.GetExperienceComponent(params?.resume_id)
+  //     console.log("❌❌❌❌❌❌",userData.data.data.experience)
+  //   }
 
-    getUserExperience()
+  //   getUserExperience()
 
-  },[])
+  // },[])
   // const experience =experience
   return (
     <div>
 
     {
-      resumeInfo?.fieldRequired?.Experience && <div className="my-3">
+      resumeInfo?.fieldRequired?.Project && <div className="my-3">
       <h1
         className="text-center font-bold "
         style={{ color: resumeInfo?.themeColor }}
       >
-        Professinal Experience
+        Projects
       </h1>
       <hr
         className="border-2 my-3 border-black"
@@ -43,17 +43,16 @@ function ExperiencePreview({ resumeInfo }) {
       <div>
          {/* eslint-disable-next-line react/prop-types */}
         {/* { resumeInfo?.experience.map((item, index) => { */}
-        {resumeInfo?.fieldRequired?.Experience && resumeInfo?.experience.map((item, index) => {
+        {resumeInfo?.fieldRequired?.Project && resumeInfo?.projects.map((item, index) => {
           return (
             <div className="my-3" key={index}>
-              <h1 className="font-bold  text-sm my-1" style={{color:resumeInfo?.themeColor}} >{item.title}</h1>
-              <div className="flex justify-between"><h1 className="text-xs font-semibold">{item.companyName}, {item.city}, {item.state}</h1>
+              <h1 className="font-bold  text-sm my-1" style={{color:resumeInfo?.themeColor}} >{item.projectName}</h1>
+              <div className="flex justify-between"><h1 className="text-xs font-semibold"><span className="font-bold">Tech Stack :-</span> {item.techStack}</h1>
               {/* <h1 className="font-semibold text-xs">{item.startDate}  to  {item.currentlyWorking ? "Present" : item.endDate} </h1></div> */}
-              <h1 className="font-semibold text-xs">{item.startDate}  to  {item.present ? "Present": item.endDate }</h1></div>
+              <h1 className="font-bold text-blue-600 text-xs"> <a href={item.liveLink}>LiveLink</a> | <a href={item.githubLink}>Github Link</a> </h1></div>
               {/* <h1 className="text-xs font-semibold ">{item.workSummary}</h1> */}
-              <div className="text-xs font-semibold " dangerouslySetInnerHTML={{__html:item.workSummary}} />
+              <div className="text-xs w-[80%] font-semibold " dangerouslySetInnerHTML={{__html:item.description}} />
 
-              
             </div>
           );
         })}
@@ -64,4 +63,4 @@ function ExperiencePreview({ resumeInfo }) {
   );
 }
 
-export default ExperiencePreview;
+export default Projectspreview;

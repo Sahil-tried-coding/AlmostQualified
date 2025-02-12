@@ -52,11 +52,29 @@
 //       }
 //     ],
 //     skills: [
-//       { id: 1, name: 'Angular', rating: 80 },
-//       { id: 2, name: 'React', rating: 100 },
-//       { id: 3, name: 'Node', rating: 90 },
-//       { id: 3, name: 'Typescript', rating: 80 },
-//     ]
+//       { id: 1, name: 'Angular', rating: 10},
+//       { id: 2, name: 'React', rating: 20},
+//       { id: 3, name: 'Node', rating: 20},
+//       { id: 3, name: 'Typescript', rating: 20},
+//     ],
+//     projects:[
+//     {
+
+//          "id":0,
+//       "projectName":"Almost Qualified",
+//       "liveLink":"wwww.google.com",
+//       "githubLink":"https://github.com/rrs301/AI-Resume-Builder/blob/main/src/dashboard/resume/components/FormSection.jsx",
+//       "techStack":"React,typescript,Firebase",
+//       "description": 'orem ipsum dolor, sit amet consectetur adipisicing elit. Sequi sit ratione facilis architecto dolore voluptatem possimus quae eveniet inventore nobis.'
+//     },{
+//       "id":0,
+//       "projectName":"Trripy",
+//       "liveLink":"wwww.google.com",
+//       "githubLink":"https://github.com/rrs301/AI-Resume-Builder/blob/main/src/dashboard/resume/components/FormSection.jsx",
+//       "techStack":"NextJs, NodeJs ,SQl ",
+//       "description": 'orem ipsum dolor, sit amet consectetur adipisicing elit. Sequi sit ratione facilis architecto dolore voluptatem possimus quae eveniet inventore nobis.'
+//     }
+//   ]
 //   };
 // themeColor: '#ff6666',
 
@@ -78,6 +96,23 @@
 //         workSummary: 'Designed, developed, and maintained full-stack web applications. Implemented responsive user interfaces with React. Designed, developed, and maintained full-stack web applications. Implemented responsive user interfaces with React.'
 //       }
 //         ],
+// "projects":[
+//     {
+//       "id":0,
+//       "projectName":"Almost Qualified",
+//       "liveLink":"wwww.google.com",
+//       "githubLink":"https://github.com/rrs301/AI-Resume-Builder/blob/main/src/dashboard/resume/components/FormSection.jsx",
+//       "techStack":"React,typescript,Firebase",
+//       "description": 'orem ipsum dolor, sit amet consectetur adipisicing elit. Sequi sit ratione facilis architecto dolore voluptatem possimus quae eveniet inventore nobis.'
+//     },{
+//       "id":0,
+//       "projectName":"Trripy",
+//       "liveLink":"wwww.google.com",
+//       "githubLink":"https://github.com/rrs301/AI-Resume-Builder/blob/main/src/dashboard/resume/components/FormSection.jsx",
+//       "techStack":"NextJs, NodeJs ,SQl ",
+//       "description": 'orem ipsum dolor, sit amet consectetur adipisicing elit. Sequi sit ratione facilis architecto dolore voluptatem possimus quae eveniet inventore nobis.'
+//     }
+//   ]
 //   firstName: "Amir",
 //   id: 118,
 //   jobTitle: "software testing",
@@ -126,16 +161,16 @@ export default {
         "startDate":"",
         "endDate":""
      },
-   //   {
-   //      "id":57,
-   //      "title":"porduct manager",
-   //      "companyName":"youtube",
-   //      "city":"pune",
-   //      "state":"New delhi",
-   //      "workSummary":"",
-   //      "startDate":"2025-02-27",
-   //      "endDate":"2025-02-28"
-   //   }
+     {
+        "id":57,
+        "title":"porduct manager",
+        "companyName":"youtube",
+        "city":"pune",
+        "state":"New delhi",
+        "workSummary":"",
+        "startDate":"2025-02-27",
+        "endDate":"2025-02-28"
+     }
   ],
   "skills": [
           { id: 1, name: '', rating: 0 },
@@ -153,8 +188,32 @@ export default {
             "major": '',
             "description": ''
           }
-        ]
+        ],
+  "projects":[
+    {
+      "id":0,
+      "projectName":"",
+      "liveLink":"",
+      "githubLink":"",
+      "techStack":"",
+      "description": ''
+    },{
+      "id":0,
+      "projectName":"",
+      "liveLink":"",
+      "githubLink":"",
+      "techStack":"",
+      "description": ''
+    }
+  ]
 }
+
+
+
+
+
+
+
 // export default {
 //   "id":161,
 //   "documentId":"minlphzlob6ttx5lwiw7t0gs",

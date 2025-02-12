@@ -12,11 +12,13 @@ import Experience from "./forms/Experience";
 import Education from "./forms/Education";
 import Skiils from "./forms/Skills";
 import Skills from "./forms/Skills";
+import AddYourField from "./forms/AddYourField";
+import Projects from "./forms/Projects";
 
 
 function Form() {
-  const TOTAL_STEPS = 5;
-  const [activeIndex, setActiveIndex] = useState(5);
+  const TOTAL_STEPS = 7;
+  const [activeIndex, setActiveIndex] = useState(1);
   const [enableButton, setEnableButton] = useState(false);
   const handleNext = () => {
     if (activeIndex < TOTAL_STEPS) {
@@ -52,6 +54,7 @@ function Form() {
           {/* Show Next until last step */}
           {activeIndex < TOTAL_STEPS ? (
             <Button 
+            disabled={!enableButton}
               className="bg-purple-600 text-white hover:bg-purple-700"
               onClick={handleNext}
             >
@@ -71,11 +74,13 @@ function Form() {
       </div>
 
       {/* Form steps */}
-      {activeIndex === 1 && <PersonalDetails setEnableButton={setEnableButton} enableButton={enableButton}/>}
-      {activeIndex === 2 && <Summary />}
-      {activeIndex === 3 && <Experience />}
-      {activeIndex === 4 && <Education />}
-      {activeIndex === 5 && <Skills />}
+      {activeIndex === 1 && <AddYourField setEnableButton={setEnableButton} enableButton={enableButton}/> }
+      {activeIndex === 2 && <PersonalDetails setEnableButton={setEnableButton} enableButton={enableButton}/>}
+      {activeIndex === 3 && <Summary />}
+      {activeIndex === 4 && <Experience />}
+      {activeIndex === 5 && <Projects />}
+      {activeIndex === 6 && <Education />}
+      {activeIndex === 7 && <Skills />}
       {/* Add other form steps here */}
     </div>
   );

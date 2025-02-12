@@ -6,6 +6,7 @@ import SummaryPreview from "./preview/SummaryPreview";
 import EducationPreview from "./preview/EducationPreview";
 import SkillsPreview from "./preview/SkillsPreview";
 import { LoaderCircleIcon } from "lucide-react";
+import Projectspreview from "./preview/Projectspreview.jsx";
 function ResumePreview() {
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
   // const [loading, setLoading] = useState(second)
@@ -27,6 +28,9 @@ function ResumePreview() {
         {/* professnial experience */}
   
         <ExperiencePreview resumeInfo={resumeInfo} />
+
+
+        <Projectspreview resumeInfo={resumeInfo} />
   
         {/* education */}
   

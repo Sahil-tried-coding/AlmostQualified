@@ -37,6 +37,12 @@ function Experience() {
     }
   }, []); // run once on mount
 
+
+//   useEffect(()=>{
+// if(experienceList.present){
+//   setExperienceList()
+// }
+//   },[resumeInfo])
   // Fetch experience data from the backend on mount.
   const getUserExperience = async () => {
     try {
@@ -73,10 +79,29 @@ function Experience() {
   // Handle checkbox changes for "present"
   const handleCheckboxChange = (index, event) => {
     const newEntries = [...experienceList];
-    newEntries[index].present = event.target.checked;
+    const isChecked = event.target.checked;
+    
+    newEntries[index].present = isChecked;
+    
+    // If "Present" is checked, set a random end date
+    if (isChecked) {
+      const randomEndDate = generateRandomFutureDate();
+      newEntries[index].endDate = randomEndDate;
+    } else {
+      newEntries[index].endDate = ""; // Reset if unchecked
+    }
+  
     setExperienceList(newEntries);
-    console.log("Checkbox changed at index", index, "to", event.target.checked);
   };
+  
+  // Function to generate a random future date
+  const generateRandomFutureDate = () => {
+    const year = new Date().getFullYear() + Math.floor(Math.random() * 3) + 1; // Next 1-3 years
+    const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, "0"); // 01-12
+    const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, "0"); // 01-28 (safe for all months)
+    return `${year}-${month}-${day}`;
+  };
+  
 
   // Handle changes from the TextEditor.
   const handleTextEditor = (e, name, index) => {
@@ -200,6 +225,7 @@ function Experience() {
                   onChange={(event) => handleChange(index, event)}
                   name="endDate"
                   type="date"
+                  
                 />
               </label>
               <label className="flex flex-row-reverse items-center justify-evenly gap-2">

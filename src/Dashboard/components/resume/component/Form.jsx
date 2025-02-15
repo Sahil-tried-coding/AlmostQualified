@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PersonalDetails from "./forms/PersonalDetails";
 import { Button } from "../../../../components/ui/button";
 import { 
@@ -14,10 +14,12 @@ import Skiils from "./forms/Skills";
 import Skills from "./forms/Skills";
 import AddYourField from "./forms/AddYourField";
 import Projects from "./forms/Projects";
+import { ResumeContext } from "../../../../Context/ResumeContext";
 
 
 function Form() {
   const TOTAL_STEPS = 7;
+  const {resumeInfo,setResumeInfo} = useContext(ResumeContext)
   const [activeIndex, setActiveIndex] = useState(1);
   const [enableButton, setEnableButton] = useState(false);
   const handleNext = () => {
@@ -31,6 +33,17 @@ function Form() {
       setActiveIndex(prev => prev - 1);
     }
   };
+
+  useEffect(() => {
+      if (resumeInfo?.fieldRequired && Array.isArray(resumeInfo.fieldRequired)) {
+          setEnableButton(true)
+        // Convert array back to an object for UI state
+        
+      } else {
+        setEnableButton(false)
+      }
+    }, []);
+
 
   return (
     <div className="w-[43%]">

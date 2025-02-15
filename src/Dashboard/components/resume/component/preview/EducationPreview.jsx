@@ -5,7 +5,8 @@ function EducationPreview({resumeInfo}) {
     // const { fieldSelected, setFieldSelected } = useContext(ResumeContext);
   
   return (
-    <div className='my-3'>
+    <div>
+      {resumeInfo?.fieldRequired?.Education && <div className='my-3'>
         <h1
         className="text-center font-bold "
         style={{ color: resumeInfo?.themeColor }}
@@ -28,6 +29,7 @@ function EducationPreview({resumeInfo}) {
             </div>
         ))
       }
+    </div>}
     </div>
   )
 }

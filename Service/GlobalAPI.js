@@ -28,6 +28,9 @@ export const MyOneResume = (id) => axiosClient.get(`/user-resumes/${id}`)
 export const GetEducationComponent = (id) => axiosClient.get(`http://localhost:1337/api/user-resumes/${id}?populate=education`)
 
 
+export const GetProjectComponent = (id) => axiosClient.get(`http://localhost:1337/api/user-resumes/${id}?populate=projects`)
+
+
 export const GetFieldRequired = (id) => axiosClient.get(`http://localhost:1337/api/user-resumes/${id}?populate=fieldRequired`)
 
 
@@ -42,7 +45,7 @@ export const UpdateFormData = (id,data) => {
  return axiosClient.put(`/user-resumes/${id}`,data)
 } 
 export default {
-  GetFieldRequired,GetSkillsComponent, GetEducationComponent,GetExperienceComponent,MyOneResume,CreateNewResume,GetUserResume,UpdateFormData,GetAllResumes,GetResumeById
+  GetProjectComponent,GetFieldRequired,GetSkillsComponent, GetEducationComponent,GetExperienceComponent,MyOneResume,CreateNewResume,GetUserResume,UpdateFormData,GetAllResumes,GetResumeById
 };
 
 // import axios from "axios";

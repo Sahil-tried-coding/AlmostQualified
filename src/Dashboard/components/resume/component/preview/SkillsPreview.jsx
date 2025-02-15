@@ -5,7 +5,8 @@ import { ResumeContext } from '../../../../../Context/ResumeContext';
 function  SkillsPreview({resumeInfo}) {
   // const { fieldSelected, setFieldSelected } = useContext(ResumeContext);
   return (
-    <div className='my-3'>
+    <div>
+      {resumeInfo?.fieldRequired?.Skills && <div className='my-3'>
         <h1
         className="text-center font-bold "
         style={{ color: resumeInfo?.themeColor }}
@@ -20,15 +21,15 @@ function  SkillsPreview({resumeInfo}) {
       />
 
 
-{resumeInfo?.fieldRequired?.Skills &&<div className='grid grid-cols-2 gap-3 my-4'>
+{<div className='grid grid-cols-2 gap-3 my-4'>
       {
          resumeInfo?.skills.map((item,index)=>(
             <div className='flex justify-between items-center' key={index}>
-                <h1>{item.skillName}</h1>
+                <h1 className='text-sm font-semibold capitalize'>{item.skillName}</h1>
                 <div className='w-[120px] bg-slate-200 h-2 '>
                     <div className='h-2' style={{backgroundColor:resumeInfo?.themeColor || '#ff6666',
-                            width:item?.rating+'%'}}>
-                            {/* width:item?.rating*20+'%'}}> */}
+                            // width:item?.rating+'%'}}>
+                            width:item?.rating*20+'%'}}>
                         {/* <div >
 
                         </div> */}
@@ -40,6 +41,7 @@ function  SkillsPreview({resumeInfo}) {
         ))
       }
       </div>}
+    </div>}
     </div>
   )
 }

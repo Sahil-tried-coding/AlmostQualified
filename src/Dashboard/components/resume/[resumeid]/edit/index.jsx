@@ -32,17 +32,17 @@ function EditResume() {
 
 
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
 
-    GlobalAPI.GetFieldRequired(params?.resume_id).then((resp)=>{
-      setFieldSelected(resp?.data?.data)
-      console.log("this is from the backend",fieldSelected)
-    })
+  //   GlobalAPI.GetFieldRequired(params?.resume_id).then((resp)=>{
+  //     setFieldSelected(resp?.data?.data)
+  //     console.log("this is from the backend",fieldSelected)
+  //   })
 
 
 
-  },[])
+  // },[])
 
  useEffect(() => {
   if (!resumeInfo) {

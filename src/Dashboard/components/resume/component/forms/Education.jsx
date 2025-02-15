@@ -77,10 +77,29 @@ function Education() {
   // Handle checkbox changes for "present"
   const handleCheckboxChange = (index, event) => {
     const newEntries = [...educationList];
-    newEntries[index].isPresent = event.target.checked;
+    const isChecked = event.target.checked;
+    
+    newEntries[index].isPresent = isChecked;
+    
+    // If "Present" is checked, set a random end date
+    if (isChecked) {
+      const randomEndDate = generateRandomFutureDate();
+      newEntries[index].endDate = randomEndDate;
+    } else {
+      newEntries[index].endDate = ""; 
+    }
+  
     setEducationList(newEntries);
-    console.log("Checkbox changed at index", index, "to", event.target.checked);
   };
+  
+  // Function to generate a random future date
+  const generateRandomFutureDate = () => {
+    const year = new Date().getFullYear() + Math.floor(Math.random() * 3) + 1; 
+    const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, "0"); 
+    const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, "0"); 
+    return `${year}-${month}-${day}`;
+  };
+  
 
   // Append a new experience entry.
   const addEducation = () => {
@@ -94,9 +113,18 @@ function Education() {
   };
 
   // Update the global context whenever the local experienceList changes.
+  // useEffect(() => {
+  //   setResumeInfo((prev) => ({ ...prev, education: educationList }));
+  // }, [educationList,resumeInfo]);
   useEffect(() => {
-    setResumeInfo((prev) => ({ ...prev, education: educationList }));
-  }, [educationList,resumeInfo]);
+    setResumeInfo((prev) => {
+      if (JSON.stringify(prev.education) !== JSON.stringify(educationList)) {
+        return { ...prev, education: educationList };
+      }
+      return prev; // Prevents unnecessary updates
+    });
+  }, [educationList]); // ✅ Now it only runs when educationList changes
+  
 
   // Save the data to the backend.
   const onSave = async (e) => {
@@ -188,10 +216,11 @@ function Education() {
               <label>
                 End Date
                 <Input
-                  value={item.endDate || ""}
+                  value={item.endDate || "12-12-2024"}
                   onChange={(event) => handleChange(index, event)}
                   name="endDate"
                   type="date"
+                  defaultValue="18-10-2021"
                 />
               </label>
               <label className="flex flex-row-reverse items-center justify-evenly gap-2">

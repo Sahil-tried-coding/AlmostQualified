@@ -19,7 +19,7 @@ import { ResumeContext } from "../../../../../Context/ResumeContext";
 import AIchatSession from "../../../../../../Service/GenerateAI";
 
 const PROMPTOM =
-  "Job role: {JobTitle}. Provide a single detailed experience summary paragraph (one-two lines) without structuring it in JSON or breaking it into multiple lines.and dont add heading experience_summary : like this";
+  "Job role: {JobTitle}. Provide a single detailed experience summary paragraph (one-two lines only) without structuring it in JSON or breaking it into multiple lines.and do not  add stricitly heading like this (ExperienceSummary) : like this";
 
 const TextEditor = ({ onRichTextEditorChange, index, defaultValue }) => {
   const [value, setValue] = useState(defaultValue);
@@ -40,7 +40,10 @@ const TextEditor = ({ onRichTextEditorChange, index, defaultValue }) => {
       const generatedText = rawText
         .replace("[", " ")
         .replace("]", " ")
-        .replace(/"/g, " ");
+        .replace(/"/g, " ")
+        .replace('{'," ")
+        .replace('}'," ")
+        .replace('ExperienceSummary'," ");
       // Update the local editor value.
       setValue(generatedText);
       // Immediately notify the parent of the new value.

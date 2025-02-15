@@ -16,7 +16,7 @@ function AddYourField({setEnableButton, enableButton}) {
   const [loading, setLoading] = useState(false)
   // const [enableButton, setEnableButton] = useState(false)
 
-  const {params} = useParams()
+  const params = useParams()
   const toggleField = (field) => {
     // Update the fieldSelected object by toggling the value for the given field.
     setFieldSelected((prev) => ({
@@ -27,48 +27,166 @@ function AddYourField({setEnableButton, enableButton}) {
   console.log("rando",fieldSelected)
 
 
-
-  useEffect(()=>{
-    if(resumeInfo?.fieldRequired && Array.isArray(resumeInfo?.fieldRequired) && resumeInfo.fieldRequired.length > 0){
-      setFieldSelected(resumeInfo?.fieldRequired)
-    }
-    else{
+  useEffect(() => {
+    if (resumeInfo?.fieldRequired && Array.isArray(resumeInfo.fieldRequired)) {
+        setEnableButton(true)
+      // Convert array back to an object for UI state
+      const selectedFieldsObject = {
+        Education: resumeInfo.fieldRequired.includes("Education"),
+        Experience: resumeInfo.fieldRequired.includes("Experience"),
+        Project: resumeInfo.fieldRequired.includes("Project"),
+        Skills: resumeInfo.fieldRequired.includes("Skills"),
+      };
+  
+      setFieldSelected(selectedFieldsObject);
+    } else {
       setFieldSelected({
-        Education:false,
-    Experience:false,
-    Project:false,
-    Skills:false
-      })
+        Education: false,
+        Experience: false,
+        Project: false,
+        Skills: false,
+      });
     }
-  },[])
+  }, []);
+  
+  // useEffect(()=>{
+  //   if(resumeInfo?.fieldRequired && Array.isArray(resumeInfo?.fieldRequired) && resumeInfo.fieldRequired.length > 0){
+  //     setFieldSelected(resumeInfo?.fieldRequired)
+  //   }
+  //   else{
+  //     setFieldSelected({
+  //       Education:false,
+  //   Experience:false,
+  //   Project:false,
+  //   Skills:false
+  //     })
+  //   }
+  // },[])
 
 
   useEffect(() => {
     setResumeInfo((prev) => ({ ...prev, fieldRequired: fieldSelected }));
   }, [fieldSelected, setResumeInfo]);
 
-  const onSave = async () =>{
+//   const onSave = async () =>{
     
-    setLoading(true)
-    setEnableButton(true)
+//     setLoading(true)
+//     setEnableButton(true)
 
+//     const data = {
+//       data: {
+//         fieldRequired: fieldSelected
+//         // fieldRequired: fieldSelected.map(({ id, ...rest }) => rest),
+//       },
+//     };
+// try {
+//   const userdata = await GlobalAPI.UpdateFormData(params?.resume_id,data)
+//   if(userdata.data){
+//     console.log("successfully updated fields")
+//   }
+// } catch (error) {
+//   console.log(error)
+// }
+    
+// setLoading(false)
+
+//   }
+
+
+  // const onSave = async () => {
+  //   setLoading(true);
+  //   setEnableButton(true);
+  
+  //   // Convert selected fields object to an array of active fields
+  //   const selectedFieldsArray = Object.keys(fieldSelected).filter(
+  //     (key) => fieldSelected[key]
+  //   );
+  
+  //   const data = {
+      
+  //       fieldRequired: selectedFieldsArray,  // 🔥 Send array instead of object
+      
+  //   };
+  
+  //   try {
+  //     const userdata = await GlobalAPI.UpdateFormData(params?.resume_id, data);
+  //     console.log("⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️",params?.resume_id)
+  //     if (userdata.data) {
+  //       console.log("Successfully updated fields");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating fields:", error);
+  //   }
+  
+  //   setLoading(false);
+  // };
+  
+
+  // const onSave = async () => {
+  //   setLoading(true);
+  //   setEnableButton(true);
+  
+  //   // Convert selected fields object to an array of field names (strings)
+  //   const selectedFieldsArray = Object.keys(fieldSelected).filter(
+  //     (key) => fieldSelected[key] // Only include fields that are true
+  //   );
+  
+  //   const data = {
+  //     data: {
+  //       fieldRequired: selectedFieldsArray, // Send array of strings
+  //     },
+  //   };
+  
+  //   try {
+  //     console.log("⬇️ Sending Data:", JSON.stringify(data, null, 2));
+  //     const userdata = await GlobalAPI.UpdateFormData(params?.resume_id, data);
+  //     if (userdata.data) {
+  //       console.log("✅ Successfully updated fields");
+  //     }
+  //   } catch (error) {
+  //     console.error("❌ Error updating fields:", error.response?.data || error.message);
+  //   }
+  
+  //   setLoading(false);
+  // };
+  
+  const onSave = async () => {
+    setLoading(true);
+    setEnableButton(true);
+
+    // Convert selected fields object to a valid array of field names
+    const selectedFieldsArray = Object.keys(fieldSelected).filter(
+        (key) => fieldSelected[key]
+    );
+
+    // Ensure we pass the correct structure to Strapi
     const data = {
-      data: {
-        fieldRequired: fieldSelected.map(({ id, ...rest }) => rest),
-      },
+        data: {
+            fieldRequired: selectedFieldsArray.reduce((acc, field) => {
+                acc[field] = true;  // Convert to an object
+                return acc;
+            }, {}),
+        },
     };
-try {
-  const userdata = await GlobalAPI.MyOneResume(params?.resume_id,data)
-  if(userdata.data){
-    console.log("successfully updated fields")
-  }
-} catch (error) {
-  console.log(error)
-}
-    
-setLoading(false)
 
-  }
+    try {
+        console.log("⬇️ Sending Data:", JSON.stringify(data, null, 2));
+        console.log("📌 Resume ID:", params?.resume_id);
+
+        const userdata = await GlobalAPI.UpdateFormData(params?.resume_id, data);
+        
+        if (userdata?.data) {
+            console.log("✅ Successfully updated fields:", userdata.data);
+        } else {
+            console.error("❌ Update failed:", userdata);
+        }
+    } catch (error) {
+        console.error("❌ Error updating fields:", error.response?.data || error.message);
+    }
+
+    setLoading(false);
+};
+
   return (
     <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
       <h1 className="font-bold text-lg text-center mb-2">

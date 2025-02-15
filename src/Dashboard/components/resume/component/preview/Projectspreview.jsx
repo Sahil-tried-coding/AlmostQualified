@@ -28,7 +28,7 @@ function Projectspreview({ resumeInfo }) {
     {
       resumeInfo?.fieldRequired?.Project && <div className="my-3">
       <h1
-        className="text-center font-bold "
+        className="text-center font-bold capitalize"
         style={{ color: resumeInfo?.themeColor }}
       >
         Projects
@@ -46,7 +46,7 @@ function Projectspreview({ resumeInfo }) {
         {resumeInfo?.fieldRequired?.Project && resumeInfo?.projects.map((item, index) => {
           return (
             <div className="my-3" key={index}>
-              <h1 className="font-bold  text-sm my-1" style={{color:resumeInfo?.themeColor}} >{item.projectName}</h1>
+              <h1 className="font-bold  text-sm my-1 capitalize" style={{color:resumeInfo?.themeColor}} >{item.projectName}</h1>
               <div className="flex justify-between"><h1 className="text-xs font-semibold"><span className="font-bold">Tech Stack :-</span> {item.techStack}</h1>
               {/* <h1 className="font-semibold text-xs">{item.startDate}  to  {item.currentlyWorking ? "Present" : item.endDate} </h1></div> */}
               <h1 className="font-bold text-blue-600 text-xs"> <a href={item.liveLink}>LiveLink</a> | <a href={item.githubLink}>Github Link</a> </h1></div>

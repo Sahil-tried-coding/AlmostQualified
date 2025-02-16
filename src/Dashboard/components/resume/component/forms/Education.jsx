@@ -154,98 +154,13 @@ function Education() {
   };
 
   return (
-    <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
-      <h1 className="font-bold text-lg text-center mb-2">Education</h1>
-      <p className="font-semibold text-sm">Add your Education</p>
-
-      {addEdu && (
-        <div className="flex justify-between w-full">
-          <div className="gap-5 flex">
-            <Button
-              onClick={addEducation}
-              variant="outline"
-              className="text-purple-600"
-            >
-              + Add Education
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {educationList.map((item, index) => (
-        <div key={index}>
-          <div className="grid grid-cols-2 p-3 gap-3 border my-5">
-            <label className=" col-span-2">
-              University Name
-              <Input
-                value={item.universityName || ""}
-                onChange={(event) => handleChange(index, event)}
-                name="universityName"
-                type="text"
-              />
-            </label>
-            <label>
-              degree
-              <Input
-                value={item.degree || ""}
-                onChange={(event) => handleChange(index, event)}
-                name="degree"
-                type="text"
-              />
-            </label>
-            <label>
-              major
-              <Input
-                value={item.major || ""}
-                onChange={(event) => handleChange(index, event)}
-                name="major"
-                type="text"
-              />
-            </label>
-
-            <label>
-              Start Date
-              <Input
-                value={item.startDate || ""}
-                onChange={(event) => handleChange(index, event)}
-                name="startDate"
-                type="date"
-              />
-            </label>
-            <div className="flex items-center justify-evenly gap-3">
-              <label>
-                End Date
-                <Input
-                  value={item.endDate || "12-12-2024"}
-                  onChange={(event) => handleChange(index, event)}
-                  name="endDate"
-                  type="date"
-                  defaultValue="18-10-2021"
-                />
-              </label>
-              <label className="flex flex-row-reverse items-center justify-evenly gap-2">
-                Present
-                <Input
-                  name="isPresent"
-                  type="checkbox"
-                  className="h-4"
-                  checked={item.isPresent || ""}
-                  onChange={(event) => handleCheckboxChange(index, event)}
-                />
-              </label>
-            </div>
-            <label className=" col-span-2 ">
-              Description
-              <Textarea
-                onChange={(event) => handleChange(index, event)}
-                type="textarea"
-                className="h-10 "
-                name="description"
-                index={index}
-                value={item.description}
-              />
-            </label>
-          </div>
+    <div>
+      {
+        resumeInfo?.fieldRequired?.Education ? <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
+        <h1 className="font-bold text-lg text-center mb-2">Education</h1>
+        <p className="font-semibold text-sm">Add your Education</p>
+  
+        {addEdu && (
           <div className="flex justify-between w-full">
             <div className="gap-5 flex">
               <Button
@@ -253,22 +168,113 @@ function Education() {
                 variant="outline"
                 className="text-purple-600"
               >
-                + Add more Education
-              </Button>
-              <Button
-                onClick={removeEducation}
-                variant="outline"
-                className="text-purple-600"
-              >
-                Remove
+                + Add Education
               </Button>
             </div>
-            <Button onClick={onSave}>
-              {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}
-            </Button>
           </div>
+        )}
+  
+        {educationList.map((item, index) => (
+          <div key={index}>
+            <div className="grid grid-cols-2 p-3 gap-3 border my-5">
+              <label className=" col-span-2">
+                University Name
+                <Input
+                  value={item.universityName || ""}
+                  onChange={(event) => handleChange(index, event)}
+                  name="universityName"
+                  type="text"
+                />
+              </label>
+              <label>
+                degree
+                <Input
+                  value={item.degree || ""}
+                  onChange={(event) => handleChange(index, event)}
+                  name="degree"
+                  type="text"
+                />
+              </label>
+              <label>
+                major
+                <Input
+                  value={item.major || ""}
+                  onChange={(event) => handleChange(index, event)}
+                  name="major"
+                  type="text"
+                />
+              </label>
+  
+              <label>
+                Start Date
+                <Input
+                  value={item.startDate || ""}
+                  onChange={(event) => handleChange(index, event)}
+                  name="startDate"
+                  type="date"
+                />
+              </label>
+              <div className="flex items-center justify-evenly gap-3">
+                <label>
+                  End Date
+                  <Input
+                    value={item.endDate || "12-12-2024"}
+                    onChange={(event) => handleChange(index, event)}
+                    name="endDate"
+                    type="date"
+                    defaultValue="18-10-2021"
+                  />
+                </label>
+                <label className="flex flex-row-reverse items-center justify-evenly gap-2">
+                  Present
+                  <Input
+                    name="isPresent"
+                    type="checkbox"
+                    className="h-4"
+                    checked={item.isPresent || ""}
+                    onChange={(event) => handleCheckboxChange(index, event)}
+                  />
+                </label>
+              </div>
+              <label className=" col-span-2 ">
+                Description
+                <Textarea
+                  onChange={(event) => handleChange(index, event)}
+                  type="textarea"
+                  className="h-10 "
+                  name="description"
+                  index={index}
+                  value={item.description}
+                />
+              </label>
+            </div>
+            <div className="flex justify-between w-full">
+              <div className="gap-5 flex">
+                <Button
+                  onClick={addEducation}
+                  variant="outline"
+                  className="text-purple-600"
+                >
+                  + Add more Education
+                </Button>
+                <Button
+                  onClick={removeEducation}
+                  variant="outline"
+                  className="text-purple-600"
+                >
+                  Remove
+                </Button>
+              </div>
+              <Button onClick={onSave}>
+                {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>: <div className="flex  items-center">
+        <div className="font-semibold justify-center mt-32 items-center">You havent Selected <span className="text-purple-600">Education</span> Field Click Next or Go back and select <span className="text-purple-600">Education</span> Field</div>
         </div>
-      ))}
+      }
     </div>
   );
 }

@@ -141,93 +141,99 @@ function Projects() {
   };
 
   return (
-    <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
-      <h1 className="font-bold text-lg text-center mb-2">Projects</h1>
-      <p className="font-semibold text-sm">
-        Add your Projects which makes impact{" "}
-      </p>
-
-      <div className="">
-        <Button
-          onClick={addProjects}
-          variant="outline"
-          className="text-purple-600 my-3"
-        >
-          + Add more Education
-        </Button>
-        {projectList.map((item, index) => (
-          <div key={index} className="grid grid-cols-2 border p-3 gap-3">
-            <label className=" col-span-2">
-              Project Title
-              <Input
-              required
-                defaultValue={item.projectName || ""}
-                index={index}
-                onChange={(event) => handleChange(event, index)}
-                name="projectName"
-              />
-            </label>
-            <label>
-              Live Link
-              <Input
-                defaultValue={item.liveLink || ""}
-                index={index}
-                onChange={(event) => handleChange(event, index)}
-                name="liveLink"
-              />
-            </label>
-            <label>
-              Github Link
-              <Input
-                defaultValue={item.githubLink || ""}
-                index={index}
-                onChange={(event) => handleChange(event, index)}
-                name="githubLink"
-              />
-            </label>
-            <label className="col-span-2">
-              Tech Stack
-              <Input
-                defaultValue={item.techStack || ""}
-                index={index}
-                onChange={(event) => handleChange(event, index)}
-                name="techStack"
-                placeholder="comma seprated value"
-              />
-            </label>
-            <label className="col-span-2">
-              Description
-              <Textarea
-                defaultValue={item.description || ""}
-                index={index}
-                onChange={(event) => handleChange(event, index)}
-                name="description"
-              />
-            </label>
-          </div>
-        ))}
-        <div className="flex justify-between w-full my-3">
-          <div className="gap-5 flex">
-            <Button
-              onClick={addProjects}
-              variant="outline"
-              className="text-purple-600"
-            >
-              + Add more Education
+    <div>
+      {
+       resumeInfo?.fieldRequired?.Project ? <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
+        <h1 className="font-bold text-lg text-center mb-2">Projects</h1>
+        <p className="font-semibold text-sm">
+          Add your Projects which makes impact{" "}
+        </p>
+  
+        <div className="">
+          {/* <Button
+            onClick={addProjects}
+            variant="outline"
+            className="text-purple-600 my-3"
+          >
+            + Add  Project
+          </Button> */}
+          {projectList.map((item, index) => (
+            <div key={index} className="grid grid-cols-2 border p-3 gap-3">
+              <label className=" col-span-2">
+                Project Title
+                <Input
+                required
+                  defaultValue={item.projectName || ""}
+                  index={index}
+                  onChange={(event) => handleChange(event, index)}
+                  name="projectName"
+                />
+              </label>
+              <label>
+                Live Link
+                <Input
+                  defaultValue={item.liveLink || ""}
+                  index={index}
+                  onChange={(event) => handleChange(event, index)}
+                  name="liveLink"
+                />
+              </label>
+              <label>
+                Github Link
+                <Input
+                  defaultValue={item.githubLink || ""}
+                  index={index}
+                  onChange={(event) => handleChange(event, index)}
+                  name="githubLink"
+                />
+              </label>
+              <label className="col-span-2">
+                Tech Stack
+                <Input
+                  defaultValue={item.techStack || ""}
+                  index={index}
+                  onChange={(event) => handleChange(event, index)}
+                  name="techStack"
+                  placeholder="comma seprated value"
+                />
+              </label>
+              <label className="col-span-2">
+                Description
+                <Textarea
+                  defaultValue={item.description || ""}
+                  index={index}
+                  onChange={(event) => handleChange(event, index)}
+                  name="description"
+                />
+              </label>
+            </div>
+          ))}
+          <div className="flex justify-between w-full my-3">
+            <div className="gap-5 flex">
+              <Button
+                onClick={addProjects}
+                variant="outline"
+                className="text-purple-600"
+              >
+                + Add Projects
+              </Button>
+              <Button
+                onClick={removeProjects}
+                variant="outline"
+                className="text-purple-600"
+              >
+                Remove
+              </Button>
+            </div>
+            <Button onClick={onSave}>
+              {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}
             </Button>
-            <Button
-              onClick={removeProjects}
-              variant="outline"
-              className="text-purple-600"
-            >
-              Remove
-            </Button>
           </div>
-          <Button onClick={onSave}>
-            {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}
-          </Button>
         </div>
-      </div>
+      </div>:<div className="flex  items-center">
+        <div className="font-semibold justify-center mt-32 items-center">You havent Selected <span className="text-purple-600">Project</span> Field Click Next or Go back and select <span className="text-purple-600">Project</span> Field</div>
+        </div>
+      }
     </div>
   );
 }

@@ -155,113 +155,119 @@ function Experience() {
   };
 
   return (
-    <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
-      <h1 className="font-bold text-lg text-center mb-2">Professional Experience</h1>
-      <p className="font-semibold text-sm">Add your previous job experience</p>
-
-      {addExpi && (
-        <div className="flex justify-between w-full">
-          <div className="gap-5 flex">
-            <Button onClick={addExperience} variant="outline" className="text-purple-600">
-              + Add Experience
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {experienceList.map((item, index) => (
-        <div key={index}>
-          <div className="grid grid-cols-2 p-3 gap-3 border my-5">
-            <label>
-              Position Title
-              <Input
-                value={item.title}
-                onChange={(event) => handleChange(index, event)}
-                name="title"
-                type="text"
-              />
-            </label>
-            <label>
-              Company Name
-              <Input
-                value={item.companyName}
-                onChange={(event) => handleChange(index, event)}
-                name="companyName"
-                type="text"
-              />
-            </label>
-            <label>
-              City
-              <Input
-                value={item.city}
-                onChange={(event) => handleChange(index, event)}
-                name="city"
-                type="text"
-              />
-            </label>
-            <label>
-              State
-              <Input
-                value={item.state}
-                onChange={(event) => handleChange(index, event)}
-                name="state"
-                type="text"
-              />
-            </label>
-            <label>
-              Start Date
-              <Input
-                value={item.startDate}
-                onChange={(event) => handleChange(index, event)}
-                name="startDate"
-                type="date"
-              />
-            </label>
-            <div className="flex items-center justify-evenly gap-3">
-              <label>
-                End Date
-                <Input
-                  value={item.endDate}
-                  onChange={(event) => handleChange(index, event)}
-                  name="endDate"
-                  type="date"
-                  
-                />
-              </label>
-              <label className="flex flex-row-reverse items-center justify-evenly gap-2">
-                Present
-                <Input
-                  name="present"
-                  type="checkbox"
-                  className="h-4"
-                  checked={item.present}
-                  onChange={(event) => handleCheckboxChange(index, event)}
-                />
-              </label>
-            </div>
-            <div className="col-span-2">
-              <TextEditor
-                defaultValue={item.workSummary}
-                index={index}
-                onRichTextEditorChange={(e) => handleTextEditor(e, "workSummary", index)}
-              />
-            </div>
-          </div>
+    <div>
+      {
+          resumeInfo?.fieldRequired?.Experience ?<div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
+        <h1 className="font-bold text-lg text-center mb-2">Professional Experience</h1>
+        <p className="font-semibold text-sm">Add your previous job experience</p>
+  
+        {addExpi && (
           <div className="flex justify-between w-full">
             <div className="gap-5 flex">
               <Button onClick={addExperience} variant="outline" className="text-purple-600">
-                + Add more Experience
-              </Button>
-              <Button onClick={removeExperience} variant="outline" className="text-purple-600">
-                Remove
+                + Add Experience
               </Button>
             </div>
-            <Button onClick={onSave}>
-              {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}
-            </Button>
           </div>
-        </div>
-      ))}
+        )}
+  
+        {experienceList.map((item, index) => (
+          <div key={index}>
+            <div className="grid grid-cols-2 p-3 gap-3 border my-5">
+              <label>
+                Position Title
+                <Input
+                  value={item.title}
+                  onChange={(event) => handleChange(index, event)}
+                  name="title"
+                  type="text"
+                />
+              </label>
+              <label>
+                Company Name
+                <Input
+                  value={item.companyName}
+                  onChange={(event) => handleChange(index, event)}
+                  name="companyName"
+                  type="text"
+                />
+              </label>
+              <label>
+                City
+                <Input
+                  value={item.city}
+                  onChange={(event) => handleChange(index, event)}
+                  name="city"
+                  type="text"
+                />
+              </label>
+              <label>
+                State
+                <Input
+                  value={item.state}
+                  onChange={(event) => handleChange(index, event)}
+                  name="state"
+                  type="text"
+                />
+              </label>
+              <label>
+                Start Date
+                <Input
+                  value={item.startDate}
+                  onChange={(event) => handleChange(index, event)}
+                  name="startDate"
+                  type="date"
+                />
+              </label>
+              <div className="flex items-center justify-evenly gap-3">
+                <label>
+                  End Date
+                  <Input
+                    value={item.endDate}
+                    onChange={(event) => handleChange(index, event)}
+                    name="endDate"
+                    type="date"
+                    
+                  />
+                </label>
+                <label className="flex flex-row-reverse items-center justify-evenly gap-2">
+                  Present
+                  <Input
+                    name="present"
+                    type="checkbox"
+                    className="h-4"
+                    checked={item.present}
+                    onChange={(event) => handleCheckboxChange(index, event)}
+                  />
+                </label>
+              </div>
+              <div className="col-span-2">
+                <TextEditor
+                  defaultValue={item.workSummary}
+                  index={index}
+                  onRichTextEditorChange={(e) => handleTextEditor(e, "workSummary", index)}
+                />
+              </div>
+            </div>
+            <div className="flex justify-between w-full">
+              <div className="gap-5 flex">
+                <Button onClick={addExperience} variant="outline" className="text-purple-600">
+                  + Add more Experience
+                </Button>
+                <Button onClick={removeExperience} variant="outline" className="text-purple-600">
+                  Remove
+                </Button>
+              </div>
+              <Button onClick={onSave}>
+                {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>:<div className="flex  items-center">
+      <div className="font-semibold justify-center mt-32 items-center">You havent Selected <span className="text-purple-600">Experience</span> Field Click Next or Go back and select <span className="text-purple-600">Experience</span> Field</div>
+      </div>
+      }
     </div>
   );
 }

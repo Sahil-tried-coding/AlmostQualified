@@ -57,7 +57,7 @@ function EditResume() {
   return (
     <ResumeContext.Provider value={{resumeInfo,setResumeInfo,fieldSelected,setFieldSelected}}>
 
-    <div className="flex justify-evenly ">
+    <div className="flex flex-col sm:justify-evenly  sm:flex sm:flex-row">
       <Form/>
       <ResumePreview/>
     </div>

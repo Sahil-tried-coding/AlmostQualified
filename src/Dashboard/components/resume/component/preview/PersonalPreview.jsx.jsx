@@ -14,7 +14,7 @@ function personalDetails({ resumeInfo,setResumeInfo }) {
       {/* <div className="flex flex-col gap-3"> */}
 
       <h1
-        className="text-2xl mb-4 font-semibold text-center capitalize"
+        className="text-2xl  font-semibold text-center capitalize"
         style={{
           color: resumeInfo.themeColor,
         }}

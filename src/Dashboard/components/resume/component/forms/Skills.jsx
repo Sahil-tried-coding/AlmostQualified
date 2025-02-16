@@ -212,7 +212,8 @@ const handleChange = (index,name,value) =>{
     setSkillsList(skillsList => skillsList.slice(0,-1))
   }
   return (
-    <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
+    <div>
+      {resumeInfo?.fieldRequired?.Skills ?<div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
       <h1 className="font-bold text-lg text-center mb-2">Skills</h1>
       <p className="font-semibold text-sm">Add your Skills  Which make impact</p>
       <div>
@@ -248,6 +249,9 @@ const handleChange = (index,name,value) =>{
           </div>
         </div>
       </div>
+    </div>:<div className="flex  items-center">
+      <div className="font-semibold justify-center mt-32 items-center">You havent Selected <span className="text-purple-600">Skill's</span> Field Click Next or Go back and select <span className="text-purple-600">Skill's</span> Field</div>
+      </div>}
     </div>
   );
 }

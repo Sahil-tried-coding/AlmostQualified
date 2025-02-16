@@ -90,10 +90,10 @@ function Form() {
       {activeIndex === 1 && <AddYourField setEnableButton={setEnableButton} enableButton={enableButton}/> }
       {activeIndex === 2 && <PersonalDetails setEnableButton={setEnableButton} enableButton={enableButton}/>}
       {activeIndex === 3 && <Summary />}
-      {activeIndex === 4 && <Experience />}
-      {activeIndex === 5 && <Projects />}
+      {  activeIndex === 4 && <Experience />}
+      { activeIndex === 5 && <Projects />}
       {activeIndex === 6 && <Education />}
-      {activeIndex === 7 && <Skills />}
+      {  activeIndex === 7 && <Skills />}
       {/* Add other form steps here */}
     </div>
   );

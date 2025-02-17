@@ -31,19 +31,6 @@ function EditResume() {
 
 
 
-
-  // useEffect(()=>{
-
-
-  //   GlobalAPI.GetFieldRequired(params?.resume_id).then((resp)=>{
-  //     setFieldSelected(resp?.data?.data)
-  //     console.log("this is from the backend",fieldSelected)
-  //   })
-
-
-
-  // },[])
-
  useEffect(() => {
   if (!resumeInfo) {
     setResumeInfo(Dummy);
@@ -57,7 +44,7 @@ function EditResume() {
   return (
     <ResumeContext.Provider value={{resumeInfo,setResumeInfo,fieldSelected,setFieldSelected}}>
 
-    <div className="flex flex-col sm:justify-evenly  sm:flex sm:flex-row">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-3 sm:mx-8">
       <Form/>
       <ResumePreview/>
     </div>

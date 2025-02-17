@@ -7,11 +7,12 @@ import EducationPreview from "./preview/EducationPreview";
 import SkillsPreview from "./preview/SkillsPreview";
 import { LoaderCircleIcon } from "lucide-react";
 import Projectspreview from "./preview/Projectspreview.jsx";
+import ShimmerLoader from "./Shimmar.jsx";
 function ResumePreview() {
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
   // const [loading, setLoading] = useState(second)
   return (
-    <div className="w-[43%] shadow-2xl p-8 h-full border-t-[20px]" style={{ borderTopColor: resumeInfo?.themeColor }}>
+    <div className=" shadow-2xl p-4 sm:p-10 h-full border-t-[20px]" style={{ borderTopColor: resumeInfo?.themeColor }}>
       {
         resumeInfo?<div >
         {/* <div
@@ -38,7 +39,7 @@ function ResumePreview() {
   
         {/* skills */}
         <SkillsPreview resumeInfo={resumeInfo} />
-      </div>:<LoaderCircleIcon className="animate-spin" />
+      </div>:<ShimmerLoader/>
       }
     </div>
   );

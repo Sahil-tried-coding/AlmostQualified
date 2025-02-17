@@ -1,11 +1,47 @@
+import { PulsatingButton } from "../components/magicui/pulsating-button";
+// import RotatingText from '../../src/components/react-bits/Rotating_text'
 import { UserButton } from "@clerk/clerk-react";
 import React from "react";
 import Header from "../Custom/Header";
+import { Button } from "../components/ui/button";
+import RotatingText from "../components/react-bits/Rotating_text"
+import { useNavigate } from "react-router-dom";
 
 function Home() {
-  return <div>
+
+
+  // const navigation = useNavigate()
+  return <div className="">
     <Header/>
-    landing page
+    <div className="">
+  
+  
+      <div className="flex flex-col justify-center items-center mt-10 gap-10">
+        <h1 className=" underline decoration-blue-600 decoration-8 font-bold text-7xl">Almost Qualified</h1>
+        <h1 className="flex justify-center items-center gap-3 font-bold text-6xl">Build Your
+          
+        <RotatingText
+    texts={['Ultimate', 'Impactful', 'Over-Powered', 'Cool!' ,'Stand-Out']}
+    mainClassName="px-2 sm:px-2 md:px-3 bg-purple-600  text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+    staggerFrom={"last"}
+    initial={{ y: "100%" }}
+    animate={{ y: 0 }}
+    exit={{ y: "-120%" }}
+    staggerDuration={0.025}
+    splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+    rotationInterval={2000}
+  />
+          
+            Resume <span className="text-purple-700">with AI</span></h1>
+        {/* <h2 className="">Effortlessly  craft a standout resume with our   AI powered builder</h2> */}
+        <a href="/dashboard" className="">
+
+   <PulsatingButton className="w-[200px]">Get Started</PulsatingButton>;
+
+        </a>
+      </div>
+    </div>
   </div>;
 }
 

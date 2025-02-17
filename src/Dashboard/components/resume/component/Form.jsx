@@ -5,7 +5,8 @@ import {
   ArrowLeftFromLineIcon, 
   ArrowRightFromLineIcon, 
   EditIcon,
-  CheckCircleIcon 
+  CheckCircleIcon, 
+  HomeIcon
 } from "lucide-react";
 import Summary from "./forms/Summary";
 import Experience from "./forms/Experience";
@@ -15,13 +16,17 @@ import Skills from "./forms/Skills";
 import AddYourField from "./forms/AddYourField";
 import Projects from "./forms/Projects";
 import { ResumeContext } from "../../../../Context/ResumeContext";
+import { Navigate, useParams } from "react-router-dom";
+import Theme from "./Theme";
 
 
 function Form() {
-  const TOTAL_STEPS = 7;
+  const TOTAL_STEPS = 8;
   const {resumeInfo,setResumeInfo} = useContext(ResumeContext)
   const [activeIndex, setActiveIndex] = useState(1);
-  const [enableButton, setEnableButton] = useState(false);
+  const [enableButton, setEnableButton] = useState(true);
+
+  const params = useParams()
   const handleNext = () => {
     if (activeIndex < TOTAL_STEPS) {
       setActiveIndex(prev => prev + 1);
@@ -46,12 +51,12 @@ function Form() {
 
 
   return (
-    <div className="w-[43%]">
-      <div className="flex justify-between gap-3 my-4">
-        <Button variant="outline">
-          <EditIcon className="mr-2 h-4 w-4" /> Theme 
-        </Button>
-        
+    <div className="">
+      <div className="flex justify-between gap-3 my-4 ">
+        <div className="flex gap-14">
+        <Button variant="outline"> <HomeIcon /></Button>
+        <Theme/>
+        </div>
         <div className="flex gap-2">
           {/* Always show Previous if not on first step */}
           {activeIndex > 1 && (
@@ -65,9 +70,9 @@ function Form() {
           )}
 
           {/* Show Next until last step */}
-          {activeIndex < TOTAL_STEPS ? (
+          {activeIndex < 7 ? (
             <Button 
-            disabled={!enableButton}
+            // disabled={!enableButton}
               className="bg-purple-600 text-white hover:bg-purple-700"
               onClick={handleNext}
             >
@@ -76,6 +81,7 @@ function Form() {
             </Button>
           ) : (
             <Button 
+            onClick={handleNext}
               className="bg-green-600 text-white hover:bg-green-700"
               type="submit"
             >
@@ -94,6 +100,7 @@ function Form() {
       { activeIndex === 5 && <Projects />}
       {activeIndex === 6 && <Education />}
       {  activeIndex === 7 && <Skills />}
+      {  activeIndex === 8 && <Navigate to={`/my-resume/${params?.resume_id}/view`}/>}
       {/* Add other form steps here */}
     </div>
   );

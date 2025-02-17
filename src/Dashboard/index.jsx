@@ -43,7 +43,7 @@ function Dashboard() {
         <Add_Resume/>
         {
           resumeList.length>0 && resumeList.map((resume,index)=>{
-            return <Resume_items resume={resume} key={index}/>
+            return <Resume_items  resume={resume} key={index}/>
           })
         }
         </div>

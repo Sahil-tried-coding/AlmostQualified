@@ -189,11 +189,11 @@ function AddYourField({setEnableButton, enableButton}) {
 
   return (
     <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
-      <h1 className="font-bold text-lg text-center mb-2">
+      <h1 className="font-bold text-lg text-center mb-2 whitespace-nowrap">
         What Fields Do You Want in Your Resume?
       </h1>
       {/* <p className="font-semibold text-sm">Select your fields</p> */}
-      <div className="flex justify-evenly mt-3">
+      <div className="sm:flex grid grid-cols-2 justify-between gap-5 items-center sm:justify-evenly mt-3">
         <Button
           className={`${fieldSelected.Experience ? "bg-green-600" : "bg-purple-500"}`}
           onClick={() => toggleField("Experience")}

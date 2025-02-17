@@ -111,6 +111,15 @@ function PersonalDetails({ enableButton, setEnableButton }) {
             onChange={handleInput}
           />
         </label>
+        <label className="col-span-2">
+          Linkedin profile url
+          <Input
+            defaultValue={resumeInfo?.linkdin}
+            required
+            name="linkdin"
+            onChange={handleInput}
+          />
+        </label>
 
         <Button type="submit" className="w-40 flex items-center justify-center">
           {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}

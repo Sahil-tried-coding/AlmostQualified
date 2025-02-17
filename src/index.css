@@ -11,6 +11,29 @@
   list-style: decimal;
   padding-left: 2em;
 }
+
+
+@media print{
+  #no-print{
+    display: none;
+  }
+
+  #print-area{
+    display: block;
+  }
+
+  body{
+    margin:0;
+    box-shadow:none;
+    padding: 0;
+  }
+}
+
+
+@page{
+  size: auto;
+  margin:0mm
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

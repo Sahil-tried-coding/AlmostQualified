@@ -8,6 +8,7 @@ import Home from './Home/index.jsx'
 import Dashboard from './Dashboard/index.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
 import EditResume from './Dashboard/components/resume/[resumeid]/edit/index.jsx'
+import ViewResume from './my-resume/[resumeId]/view/index.jsx'
 // import EditResume from './Dashboard/resume/[resumeid]/edit/index.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path:'/',
     element:<Home/>
+  },
+  {
+    path:'/my-resume/:resume_id/view',
+    element:<ViewResume/>
   },
   {
     path:'/auth/sign-in',

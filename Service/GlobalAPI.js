@@ -14,6 +14,8 @@ export const CreateNewResume = (data) => axiosClient.post("/user-resumes", data)
 // 
 // const EditResume = (user_email) => axiosClient.get('/user-resumes/')
 
+
+export const DeleteById = (id) => axiosClient.delete('/user-resumes/'+id)
 export const GetUserResume = (user_email) => axiosClient.get('/user-resumes?fillters[userEmail][$eq]='+user_email);
 
 export const GetResumeById = (id) => 
@@ -45,7 +47,7 @@ export const UpdateFormData = (id,data) => {
  return axiosClient.put(`/user-resumes/${id}`,data)
 } 
 export default {
-  GetProjectComponent,GetFieldRequired,GetSkillsComponent, GetEducationComponent,GetExperienceComponent,MyOneResume,CreateNewResume,GetUserResume,UpdateFormData,GetAllResumes,GetResumeById
+  DeleteById,GetProjectComponent,GetFieldRequired,GetSkillsComponent, GetEducationComponent,GetExperienceComponent,MyOneResume,CreateNewResume,GetUserResume,UpdateFormData,GetAllResumes,GetResumeById
 };
 
 // import axios from "axios";

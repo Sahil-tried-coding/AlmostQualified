@@ -219,7 +219,29 @@ function Experience() {
                   type="date"
                 />
               </label>
-              <div className="flex items-center justify-evenly gap-3">
+              <div className="flex flex-col sm:hidden items-center justify-evenly gap-3">
+                <label>
+                  End Date
+                  <Input
+                    value={item.endDate}
+                    onChange={(event) => handleChange(index, event)}
+                    name="endDate"
+                    type="date"
+                    
+                  />
+                </label>
+                <label className="flex flex-row-reverse items-center justify-evenly gap-2">
+                  Present
+                  <Input
+                    name="present"
+                    type="checkbox"
+                    className="h-4"
+                    checked={item.present}
+                    onChange={(event) => handleCheckboxChange(index, event)}
+                  />
+                </label>
+              </div>
+              <div className="hidden sm:flex items-center justify-evenly gap-3">
                 <label>
                   End Date
                   <Input

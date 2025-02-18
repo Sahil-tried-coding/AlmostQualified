@@ -7,7 +7,7 @@ function Header() {
 
   return (
     <div className="flex shadow-lg  w-[95%] h-[4rem] justify-between  border-2 mx-auto my-2 p-1">
-        <img src="/logo.svg" width={60} height={60}></img>
+       <Link to={'/'}> <img src="/logo.svg" width={60} height={60}></img></Link>
         {
           isSignedIn ? <div className="items-center flex gap-5">
               <Link to={"/dashboard"}>

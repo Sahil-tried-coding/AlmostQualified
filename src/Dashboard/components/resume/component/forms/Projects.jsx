@@ -145,9 +145,9 @@ function Projects() {
       {
        resumeInfo?.fieldRequired?.Project ? <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
         <h1 className="font-bold text-lg text-center mb-2">Projects</h1>
-        <p className="font-semibold text-sm">
+        {/* <p className="font-semibold text-sm">
           Add your Projects which makes impact{" "}
-        </p>
+        </p> */}
   
         <div className="">
           {/* <Button

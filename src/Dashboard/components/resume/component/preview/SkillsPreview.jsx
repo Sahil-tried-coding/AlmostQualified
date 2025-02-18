@@ -24,7 +24,7 @@ function  SkillsPreview({resumeInfo}) {
 {<div className='grid grid-cols-2 gap-3 my-4'>
       {
          resumeInfo?.skills.map((item,index)=>(
-            <div className='flex justify-between items-center' key={index}>
+            <div className='flex sm:justify-between sm:gap-0 gap-4 items-center justify-evenly' key={index}>
                 <h1 className='text-sm font-semibold capitalize'>{item.skillName}</h1>
                 <div className='w-[120px] bg-slate-200 h-2 '>
                     <div className='h-2' style={{backgroundColor:resumeInfo?.themeColor || '#ff6666',

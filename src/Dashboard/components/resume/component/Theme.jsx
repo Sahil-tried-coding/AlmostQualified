@@ -64,7 +64,7 @@ function Theme() {
           <EditIcon className="mr-2 h-4 w-4" /> Theme 
         </Button>
   </PopoverTrigger>
-  <PopoverContent className='w-[550px] my-3 mx-5 border-2 border-black'>
+  <PopoverContent className='w-full sm:w-[550px] my-3 sm:mx-5 border-2 border-black'>
         <h1 className='font-semibold text-center underline'>Select The Color For Theme</h1>
     <div className='grid mb-2 grid-cols-10 cursor-pointer'>
         {

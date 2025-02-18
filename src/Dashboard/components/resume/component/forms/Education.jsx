@@ -158,9 +158,9 @@ function Education() {
       {
         resumeInfo?.fieldRequired?.Education ? <div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
         <h1 className="font-bold text-lg text-center mb-2">Education</h1>
-        <p className="font-semibold text-sm">Add your Education</p>
+        {/* <p className="font-semibold text-sm">Add your Education</p> */}
   
-        {addEdu && (
+        {/* {addEdu && (
           <div className="flex justify-between w-full">
             <div className="gap-5 flex">
               <Button
@@ -172,7 +172,7 @@ function Education() {
               </Button>
             </div>
           </div>
-        )}
+        )} */}
   
         {educationList.map((item, index) => (
           <div key={index}>
@@ -214,15 +214,15 @@ function Education() {
                   type="date"
                 />
               </label>
-              <div className="flex items-center justify-evenly gap-3">
+              <div className="flex flex-col sm:hidden items-center justify-evenly gap-3">
                 <label>
                   End Date
                   <Input
-                    value={item.endDate || "12-12-2024"}
+                    value={item.endDate}
                     onChange={(event) => handleChange(index, event)}
                     name="endDate"
                     type="date"
-                    defaultValue="18-10-2021"
+                    
                   />
                 </label>
                 <label className="flex flex-row-reverse items-center justify-evenly gap-2">
@@ -231,7 +231,29 @@ function Education() {
                     name="isPresent"
                     type="checkbox"
                     className="h-4"
-                    checked={item.isPresent || ""}
+                    checked={item.isPresent}
+                    onChange={(event) => handleCheckboxChange(index, event)}
+                  />
+                </label>
+              </div>
+              <div className="hidden sm:flex items-center justify-evenly gap-3">
+                <label>
+                  End Date
+                  <Input
+                    value={item.endDate}
+                    onChange={(event) => handleChange(index, event)}
+                    name="endDate"
+                    type="date"
+                    
+                  />
+                </label>
+                <label className="flex flex-row-reverse items-center justify-evenly gap-2">
+                  Present
+                  <Input
+                    name="isPresent"
+                    type="checkbox"
+                    className="h-4"
+                    checked={item.isPresent}
                     onChange={(event) => handleCheckboxChange(index, event)}
                   />
                 </label>
@@ -248,6 +270,8 @@ function Education() {
                 />
               </label>
             </div>
+          </div>
+        ))}
             <div className="flex justify-between w-full">
               <div className="gap-5 flex">
                 <Button
@@ -269,8 +293,6 @@ function Education() {
                 {loading ? <LoaderCircleIcon className="animate-spin" /> : "Save"}
               </Button>
             </div>
-          </div>
-        ))}
       </div>: <div className="flex  items-center">
         <div className="font-semibold justify-center mt-32 items-center">You havent Selected <span className="text-purple-600">Education</span> Field Click Next or Go back and select <span className="text-purple-600">Education</span> Field</div>
         </div>

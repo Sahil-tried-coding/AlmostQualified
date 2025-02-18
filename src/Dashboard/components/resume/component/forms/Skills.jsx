@@ -215,15 +215,15 @@ const handleChange = (index,name,value) =>{
     <div>
       {resumeInfo?.fieldRequired?.Skills ?<div className="p-5 border-t-purple-600 rounded-lg shadow-lg border-t-8">
       <h1 className="font-bold text-lg text-center mb-2">Skills</h1>
-      <p className="font-semibold text-sm">Add your Skills  Which make impact</p>
+      {/* <p className="font-semibold text-sm">Add your Skills  Which make impact</p> */}
       <div>
       {
           skillsList?.map((item,index)=>(
           
-        <div key={index} className="grid border p-3   grid-cols-2 ">
+        <div key={index} className="grid gap-3 border sm:p-3 p-1  grid-cols-2 ">
           <label>
             Skill Name
-            <Input defaultValue = {item.skillName || ""} name="skillName"  onChange={(event)=>handleChange(index,"skillName",event.target.value)} className="w-[50%]" type="text" />
+            <Input defaultValue = {item.skillName || ""} name="skillName"  onChange={(event)=>handleChange(index,"skillName",event.target.value)} className="sm:w-[50%]" type="text" />
           </label>
           <label>
             Rating
@@ -239,10 +239,10 @@ const handleChange = (index,name,value) =>{
         
         ))
       }
-      <div className="flex  mt-3 justify-between">
+      <div className="flex  mt-6 justify-between">
           <div className="gap-4 flex">
-          <Button onClick={addSkill}>Add More Skill</Button>
-          <Button variant="outline" onClick={removeSkill}>Remove Skill</Button>
+          <Button className="bg-white text-blue-600 border border-blue-700" onClick={addSkill}>Add  Skill</Button>
+          <Button variant="outline" onClick={removeSkill}>Remove </Button>
           </div>
           <div>
             <Button className="bg-purple-500" onClick={onSave}>{loading? <LoaderCircleIcon className="animate-spin"/>:"Save"}</Button>

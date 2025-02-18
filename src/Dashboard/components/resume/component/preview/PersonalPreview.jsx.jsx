@@ -1,20 +1,14 @@
 import { CircleDashed, StarIcon } from "lucide-react";
 import React, { useEffect } from "react";
+import ShimmerLoader from "../Shimmar";
+import ShimmarTwo from "../ShimmarTwo";
 
 function personalDetails({ resumeInfo,setResumeInfo }) {
-  // console.log("this is the fistname", resumeInfo?.firstName)
-
-  // useEffect(() => {
-  //   const savedData = JSON.parse(localStorage.getItem("resumeData"));
-  //   if (savedData) {
-  //     setResumeInfo(savedData);
-  //   }
-  // }, []);
   return (
     <div className="">
-      {/* <div className="flex flex-col gap-3"> */}
-
-      <h1
+      {
+        resumeInfo.firstName ? <div>
+          <h1
         className="text-2xl  font-semibold text-center capitalize"
         style={{
           color: resumeInfo.themeColor,
@@ -26,21 +20,21 @@ function personalDetails({ resumeInfo,setResumeInfo }) {
       
       <div
         className="hidden sm:flex text-sm  sm:justify-evenly mt-1 font-semibold"
-        style={{
-          color: resumeInfo.themeColor,
-        }}
+        // style={{
+        //   color: resumeInfo.themeColor,
+        // }}
       >
         <h2 className="">{resumeInfo?.phone}</h2>⋄ 
         <h2
         className="  capitalize font-semibold "
-        style={{
-          color: resumeInfo.themeColor,
-        }}
+        // style={{
+        //   color: resumeInfo.themeColor,
+        // }}
       >
         {resumeInfo?.address} 
       </h2> ⋄
         <h2 className="">{resumeInfo?.email}  </h2> ⋄
-        <h2 className=""> <a href={resumeInfo?.linkdin}>Linkedin</a></h2>
+        <h2 className="text-blue-600"> <a href={resumeInfo?.linkdin}>Linkedin</a></h2>
       </div>
       <div className="flex sm:hidden justify-center gap-3">
       <h2 className="">{resumeInfo?.phone}</h2> | 
@@ -49,7 +43,7 @@ function personalDetails({ resumeInfo,setResumeInfo }) {
       >
         {resumeInfo?.address} </h2>
       </div>
-      <div className="flex justify-center gap-3">
+      <div className="flex sm:hidden justify-center gap-3">
       <h2 className="">{resumeInfo?.email}  </h2>  | 
       <h2 className="text-blue-600"> <a href={resumeInfo?.linkdin}>Linkedin</a></h2>
       </div>
@@ -60,8 +54,11 @@ function personalDetails({ resumeInfo,setResumeInfo }) {
           borderColor: resumeInfo.themeColor,
         }}
         />
+        </div>:<ShimmarTwo/>
+      }
+
+      
         </div>
-    // </div>
   );
 }
 

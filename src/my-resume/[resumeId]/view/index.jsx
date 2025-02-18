@@ -47,7 +47,7 @@ function ViewResume() {
             </div>
         </div>
         </div>
-            <div id='print-area' className='my-10 mx-10 md:mx-20 lg:mx-36'>
+            <div id='print-area' className='my-10 mx-6 md:mx-20 lg:mx-36'>
               <ResumePreview/>
             </div>
     </ResumeContext.Provider>

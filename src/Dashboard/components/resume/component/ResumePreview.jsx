@@ -12,7 +12,8 @@ function ResumePreview() {
   const { resumeInfo, setResumeInfo } = useContext(ResumeContext);
   // const [loading, setLoading] = useState(second)
   return (
-    <div className=" shadow-2xl p-4 sm:p-10 h-full border-t-[20px]" style={{ borderTopColor: resumeInfo?.themeColor }}>
+    <div className=" shadow-2xl p-3
+     sm:p-10 h-full border-t-[20px]" style={{ borderTopColor: resumeInfo?.themeColor }}>
       {
         resumeInfo?<div >
         {/* <div

@@ -40,7 +40,7 @@ function Home() {
             Resume <span className="text-purple-700">with AI</span>
           </h1>
           {/* <h2 className="">Effortlessly  craft a standout resume with our   AI powered builder</h2> */}
-          <a href="/dashboard" className="">
+          <a href="/auth/sign-in" className="">
             <PulsatingButton className="w-[200px]">Get Started</PulsatingButton>
             ;
           </a>

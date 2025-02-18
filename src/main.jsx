@@ -13,12 +13,13 @@ import ViewResume from './my-resume/[resumeId]/view/index.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
-// if( PUBLISHABLE_KEY){
-//   return null
-// }
 
 
 const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<Home/>
+  },
   {
     element:<App/>,
     children:[
@@ -32,10 +33,7 @@ const router = createBrowserRouter([
       }
     ] 
   },
-  {
-    path:'/',
-    element:<Home/>
-  },
+  
   {
     path:'/my-resume/:resume_id/view',
     element:<ViewResume/>

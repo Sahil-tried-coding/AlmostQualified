@@ -28,11 +28,7 @@ function Dashboard() {
     
   },[user])
 
-  // useEffect(()=>{
-  //   console.log(resumeList)
-  // },[])
 
-  // console.log(user?.primaryEmailAddress?.emailAddress)
   return (
     <div>
       {/* <Header /> */}

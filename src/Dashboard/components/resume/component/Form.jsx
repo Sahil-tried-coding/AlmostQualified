@@ -52,8 +52,8 @@ function Form() {
 
   return (
     <div className="">
-      <div className="flex justify-between gap-3 my-4 ">
-        <div className="flex gap-5 sm:gap-14">
+      <div className="flex justify-between gap-2 my-4 ">
+        <div className="flex gap-2 sm:gap-14">
         <Link to={'/'}><Button variant="outline"> <HomeIcon /></Button></Link>
         <Theme/>
         </div>

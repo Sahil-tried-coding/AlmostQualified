@@ -45,10 +45,10 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+  <StrictMode>
     
     <RouterProvider router={router}/>
-    </ClerkProvider>
   </StrictMode>,
+    </ClerkProvider>
 )

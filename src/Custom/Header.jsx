@@ -1,13 +1,17 @@
 import {  UserButton, useUser } from "@clerk/clerk-react"
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
+import { ShinyButton } from "../components/magicui/shiny-button";
 // import Button from 
 function Header() {
+
+
   const{isSignedIn,user}=useUser();
 
   return (
     <div className="flex shadow-lg  w-[95%] h-[4rem] justify-between  border-2 mx-auto my-2 p-1">
        <Link to={'/'}> <img src="/logo.svg" width={60} height={60}></img></Link>
+       <Link to={'/auth/sign-in'}><ShinyButton >Login</ShinyButton></Link> 
         {
           isSignedIn ? <div className="items-center flex gap-5">
               <Link to={"/dashboard"}>

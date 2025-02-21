@@ -41,6 +41,7 @@ function Home() {
           </h1>
           {/* <h2 className="">Effortlessly  craft a standout resume with our   AI powered builder</h2> */}
           <a href="/auth/sign-in" className="">
+          {/* <a href="/dashboard" className=""> */}
             <PulsatingButton className="w-[200px]">Get Started</PulsatingButton>
             ;
           </a>

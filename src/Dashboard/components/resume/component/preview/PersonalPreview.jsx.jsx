@@ -20,23 +20,19 @@ function personalDetails({ resumeInfo,setResumeInfo }) {
       
       <div
         className="hidden sm:flex text-sm  sm:justify-evenly mt-1 font-semibold"
-        // style={{
-        //   color: resumeInfo.themeColor,
-        // }}
+        
       >
         <h2 className="">{resumeInfo?.phone}</h2>⋄ 
         <h2
         className="  capitalize font-semibold "
-        // style={{
-        //   color: resumeInfo.themeColor,
-        // }}
+        
       >
         {resumeInfo?.address} 
       </h2> ⋄
         <h2 className="">{resumeInfo?.email}  </h2> ⋄
         <h2 className="text-blue-600"> <a href={resumeInfo?.linkdin}>Linkedin</a></h2>
       </div>
-      <div className="flex sm:hidden justify-center gap-3">
+      <div className="flex text-sm whitespace-nowrap sm:hidden justify-center gap-3">
       <h2 className="">{resumeInfo?.phone}</h2> | 
       <h2
         className="  capitalize font-semibold "

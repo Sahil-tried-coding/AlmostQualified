@@ -16,7 +16,7 @@ import Skills from "./forms/Skills";
 import AddYourField from "./forms/AddYourField";
 import Projects from "./forms/Projects";
 import { ResumeContext } from "../../../../Context/ResumeContext";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import Theme from "./Theme";
 
 
@@ -54,7 +54,7 @@ function Form() {
     <div className="">
       <div className="flex justify-between gap-3 my-4 ">
         <div className="flex gap-5 sm:gap-14">
-        <Button variant="outline"> <HomeIcon /></Button>
+        <Link to={'/'}><Button variant="outline"> <HomeIcon /></Button></Link>
         <Theme/>
         </div>
         <div className="flex gap-2">

@@ -33,7 +33,7 @@ function Dashboard() {
     <div>
       {/* <Header /> */}
       <div className="p-6 md:p-8 lg:px-14">
-      <h1 className=" text-blue-600 sm:border-none font-bold sm:text-4xl text-center text-2xl animate-bounce p-2 border-2 border-black">
+      <h1 className=" text-blue-600 sm:border-none font-bold sm:text-4xl text-center text-2xl mb-3 p-2 border-2 border-black">
             Almost Qualified ! 
           </h1>
         {/* <h1 className="mb-4 text-xl font-bold ">Almost Qualified fr</h1> */}

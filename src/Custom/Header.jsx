@@ -12,7 +12,7 @@ function Header() {
     <div className="flex shadow-lg  w-[95%] h-[4rem] justify-between  border-2 mx-auto my-2 p-1">
        <Link to={'/'}> <img className="w-12 sm:w-14" src="/logo.svg" ></img></Link>
        <div className="flex gap-5 items-center">
-       <Link to={'/auth/sign-in'}><ShinyButton >Login</ShinyButton></Link> 
+       {/* <Link to={'/auth/sign-in'}><ShinyButton >Login</ShinyButton></Link>  */}
         <div>
         {
           isSignedIn ? <div className="items-center flex gap-5">

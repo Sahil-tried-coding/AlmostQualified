@@ -4,7 +4,7 @@ function ShimmarTwo() {
     return (
         <div className="flex flex-col justify-center itemss-center animate-pulse space-y-6 p-10">
           {/* Header */}
-          <div className="h-8 bg-gray-300 ml-28  rounded-md w-1/3"></div>
+          <div className="h-9 bg-gray-300 ml-28  rounded-md w-1/3"></div>
     
           {/* Sections */}
           <div className="space-y-4 ml-16">

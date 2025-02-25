@@ -20,7 +20,7 @@ function Skills() {
   }]);
 
 
-  console.log("this is the rating here 💕💕💕💕",skillsList?.rating)
+  console.log("ok ok ok 💕💕💕💕",skillsList?.rating)
   useEffect(() => {
     if (resumeInfo?.skills && Array.isArray(resumeInfo.skills) && resumeInfo.skills.length > 0) {
       setSkillsList(resumeInfo.skills);
